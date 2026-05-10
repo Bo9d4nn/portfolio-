@@ -4,6 +4,8 @@ import { motion } from 'framer-motion'
 import ContactForm from './ContactForm'
 import CommentsSection from './CommentsSection'
 
+
+
 const smoothEase: [number, number, number, number] = [
   0.22,
   1,

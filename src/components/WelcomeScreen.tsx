@@ -11,7 +11,8 @@ export default function WelcomeScreen() {
       style={{
         width: '100%',
         height: '100vh',
-        background: '#000',
+        // background: '#000',
+        background: '#1A202C',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
@@ -199,7 +200,7 @@ export default function WelcomeScreen() {
     color: 'rgba(255,255,255,0.7)',
   }}
 >
-  www.rifqi.vercel.app
+  www.bohdan.vercel.app
 </motion.div>
       </motion.div>
     </div>

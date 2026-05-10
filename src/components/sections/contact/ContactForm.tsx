@@ -1,5 +1,8 @@
 'use client'
 
+import emailjs from '@emailjs/browser'
+import { useRef, useState } from 'react'
+
 import { motion, Variants } from 'framer-motion'
 import {
   Send,
@@ -46,27 +49,51 @@ const socialLinks = [
     icon: FaInstagram,
     link: 'https://www.instagram.com/itsmeikky_12?igsh=ZHFpMTJ1bHQzeDAx',
   },
-  {
-    title: 'Youtube',
-    user: '@youtube',
-    icon: FaYoutube,
-    link: 'https://youtube.com/@zettaajah?si=QRjJGD4zCQG8aIHX',
-  },
+  // {
+  //   title: 'Youtube',
+  //   user: '@youtube',
+  //   icon: FaYoutube,
+  //   link: 'https://youtube.com/@zettaajah?si=QRjJGD4zCQG8aIHX',
+  // },
   {
     title: 'Github',
     user: '@github',
     icon: FaGithub,
-    link: 'https://github.com/RifqiMuhammadAliya12',
+    link: 'https://github.com/Bo9d4nn',
   },
-  {
-    title: 'TikTok',
-    user: '@tiktok',
-    icon: FaTiktok,
-    link: 'https://www.tiktok.com/@itsme.ikky_?_r=1&_t=ZS-95yAYr5PHUb',
-  },
+  // {
+  //   title: 'TikTok',
+  //   user: '@tiktok',
+  //   icon: FaTiktok,
+  //   link: 'https://www.tiktok.com/@itsme.ikky_?_r=1&_t=ZS-95yAYr5PHUb',
+  // },
 ]
 
 export default function ContactForm() {
+  const formRef = useRef<HTMLFormElement>(null)
+  const [sending, setSending] = useState(false)
+  const [sent, setSent] = useState(false)
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setSending(true)
+    try {
+      await emailjs.sendForm(
+        'service_4cn1t3c',
+        'template_wpbsjle',
+        formRef.current!,
+        'GlPdCmt88CanNY3UW'
+      )
+      setSent(true)
+      formRef.current?.reset()
+      setTimeout(() => setSent(false), 4000)
+    } catch (err) {
+      console.error(err)
+    } finally {
+      setSending(false)
+    }
+  }
+
   return (
     <motion.div
       initial={{ opacity: 0, x: -40 }}
@@ -75,99 +102,68 @@ export default function ContactForm() {
       viewport={{ once: false, amount: 0.2 }}
       className="rounded-[28px] border border-white/10 bg-white/[0.04] backdrop-blur-xl p-5 md:p-8 flex flex-col h-full"
     >
-      {/* HEADER */}
-      <motion.div
-        variants={fieldVariants}
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: false }}
-        transition={{ delay: 0.05 }}
-      >
-        <h2 className="text-2xl md:text-3xl font-bold mb-3">
-          Hubungi Saya
-        </h2>
-
+      <motion.div variants={fieldVariants} initial="hidden" whileInView="show" viewport={{ once: false }}>
+        <h2 className="text-2xl md:text-3xl font-bold mb-3">Get In Touch</h2>
         <p className="text-sm text-white/50 mb-7">
-          Feel free to reach out if you want to collaborate,
-          discuss ideas, or simply say hello.
+          Feel free to reach out if you want to collaborate, discuss ideas, or simply say hello.
         </p>
       </motion.div>
 
-      {/* FORM */}
-      <div className="space-y-4">
-        {/* NAME */}
-        <motion.div
-          variants={fieldVariants}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: false }}
-          transition={{ delay: 0.1 }}
-        >
+      <form ref={formRef} onSubmit={handleSubmit} className="space-y-4">
+        <motion.div variants={fieldVariants} initial="hidden" whileInView="show" viewport={{ once: false }} transition={{ delay: 0.1 }}>
           <div className="relative">
             <User className="absolute left-4 top-1/2 -translate-y-1/2 text-white/40" />
-
             <input
+              name="name"
               placeholder="Your Name"
+              required
               className="w-full rounded-2xl border border-white/15 bg-black/20 pl-12 pr-4 py-4 outline-none transition duration-200 focus:border-white focus:ring-1 focus:ring-white/40"
             />
           </div>
         </motion.div>
 
-        {/* EMAIL */}
-        <motion.div
-          variants={fieldVariants}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: false }}
-          transition={{ delay: 0.16 }}
-        >
+        <motion.div variants={fieldVariants} initial="hidden" whileInView="show" viewport={{ once: false }} transition={{ delay: 0.16 }}>
           <div className="relative">
             <Mail className="absolute left-4 top-1/2 -translate-y-1/2 text-white/40" />
-
             <input
+              name="email"
+              type="email"
               placeholder="Your Email"
+              required
               className="w-full rounded-2xl border border-white/15 bg-black/20 pl-12 pr-4 py-4 outline-none transition duration-200 focus:border-white focus:ring-1 focus:ring-white/40"
             />
           </div>
         </motion.div>
 
-        {/* MESSAGE */}
-        <motion.div
-          variants={fieldVariants}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: false }}
-          transition={{ delay: 0.22 }}
-        >
+        <motion.div variants={fieldVariants} initial="hidden" whileInView="show" viewport={{ once: false }} transition={{ delay: 0.22 }}>
           <div className="relative">
             <MessageSquare className="absolute left-4 top-5 text-white/40" />
-
             <textarea
+              name="message"
               rows={5}
               placeholder="Your Message"
+              required
               className="w-full rounded-2xl border border-white/15 bg-black/20 pl-12 pr-4 py-4 outline-none resize-none transition duration-200 focus:border-white focus:ring-1 focus:ring-white/40"
             />
           </div>
         </motion.div>
 
-        {/* BUTTON */}
         <motion.button
           variants={fieldVariants}
           initial="hidden"
           whileInView="show"
           viewport={{ once: false }}
           transition={{ delay: 0.28 }}
-          whileHover={{
-            scale: 1.06,
-            transition: { duration: 0.12 },
-          }}
+          whileHover={{ scale: 1.06, transition: { duration: 0.12 } }}
           whileTap={{ scale: 0.97 }}
-          className="w-full rounded-2xl py-4 bg-white/10 border border-white/10 flex items-center justify-center gap-2"
+          type="submit"
+          disabled={sending || sent}
+          className="w-full rounded-2xl py-4 bg-white/10 border border-white/10 flex items-center justify-center gap-2 transition hover:bg-white/20 disabled:opacity-60"
         >
           <Send size={16} />
-          Send Message
+          {sent ? '✓ Message Sent!' : sending ? 'Sending...' : 'Send Message'}
         </motion.button>
-      </div>
+      </form>
 
       {/* SOCIAL */}
       <div className="border-t border-white/10 pt-5 mt-6">
@@ -184,7 +180,7 @@ export default function ContactForm() {
 
         {/* LINKEDIN */} 
         <motion.a
-          href="https://www.linkedin.com/in/rifqimuhammadaliya/"  
+          href="https://www.linkedin.com/in/bohdan-kharuk-794415348/"  
           target="_blank"
           rel="noopener noreferrer"
           variants={fieldVariants}
