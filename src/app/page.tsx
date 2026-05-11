@@ -53,13 +53,13 @@ useEffect(() => {
 
   if (!hasPlayedIntro()) {
     setShowWelcome(true)
-    setShowApp(false)
+    setShowApp(true) //false
 
     const timer = setTimeout(() => {
       setShowWelcome(false)
       setShowApp(true)
       setIntroPlayed()
-    }, 2800)
+    }, 3200) //2800
 
     return () => clearTimeout(timer)
   } else {
@@ -85,14 +85,25 @@ useEffect(() => {
           <motion.div
             initial={{ y: 0 }}
             animate={{ y: 0 }}
-            exit={{ y: '-100%' }}
+            // exit={{ y: '-100%' }}
+            // onAnimationStart={(definition) => {
+            //   if (definition === 'exit') {
+            //     setShowApp(true)
+            //   }
+            // }}
+            // transition={{
+            //   duration: 1.2,
+            //   ease: [0.76, 0, 0.24, 1],
+            // }}
+
+            exit={{ y: '-100%', opacity: 0.8 }}
             onAnimationStart={(definition) => {
               if (definition === 'exit') {
                 setShowApp(true)
               }
             }}
             transition={{
-              duration: 1.2,
+              duration: 1.4,
               ease: [0.76, 0, 0.24, 1],
             }}
             style={{
