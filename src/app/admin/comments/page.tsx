@@ -136,44 +136,54 @@ export default function AdminCommentsPage() {
   };
 
   const sendReply = async (commentId: number) => {
+    console.log("sendReply called", commentId)
+    console.log("replyText state:", replyText)
+  console.log("text for id:", replyText[commentId])
     const text = replyText[commentId];
+      if (!text?.trim()) return;
+      
+      const target = comments.find((x) => x.id === commentId);
+      const oldReplies = Array.isArray(target?.replies) ? target.replies : [];
+      const newReply = {
+        username: "Admin",
+        message: text,
+        created_at: new Date().toISOString(),
+      };
+      const updatedReplies = [...oldReplies, newReply];
 
-    if (!text?.trim()) return;
+      const { error } = await supabase
+        .from("comments")
+        .update({ replies: updatedReplies })
+        .eq("id", commentId);
+        console.log("update result:", error)
 
-    const target = comments.find((x) => x.id === commentId);
+      if (error) {
+        console.error("Reply error:", error);
+        return;
+      }
 
-    const oldReplies = target?.replies || [];
+      // await supabase
+      //   .from("comments")
+      //   .update({
+      //     replies: updatedReplies,
+      //   })
+      //   .eq("id", commentId);
 
-    const newReply = {
-      username: "Admin",
-      message: text,
-      created_at: new Date().toISOString(),
-    };
+      setComments((prev) =>
+        prev.map((item) =>
+          String(item.id) === String(commentId)
+            ? {
+                ...item,
+                replies: updatedReplies,
+              }
+            : item,
+        ),
+      );
 
-    const updatedReplies = [...oldReplies, newReply];
-
-    await supabase
-      .from("comments")
-      .update({
-        replies: updatedReplies,
-      })
-      .eq("id", commentId);
-
-    setComments((prev) =>
-      prev.map((item) =>
-        item.id === commentId
-          ? {
-              ...item,
-              replies: updatedReplies,
-            }
-          : item,
-      ),
-    );
-
-    setReplyText((prev) => ({
-      ...prev,
-      [commentId]: "",
-    }));
+      setReplyText((prev) => ({
+        ...prev,
+        [commentId]: "",
+      }));
   };
 
   return (
@@ -307,6 +317,24 @@ export default function AdminCommentsPage() {
                       </div>
                     </div>
 
+
+                      {/* REPLIES */}
+                        {Array.isArray(comment.replies) && comment.replies.length > 0 && (
+                          <div className="border-t border-white/5 pt-4 space-y-2">
+                            {comment.replies.map((reply: any, i: number) => (
+                              <div key={i} className="flex gap-3 px-3 py-2 rounded-xl bg-white/[0.03] border border-white/5">
+                                <div className="w-7 h-7 rounded-full bg-white/10 flex items-center justify-center text-[10px] font-medium shrink-0">
+                                  A
+                                </div>
+                                <div>
+                                  <p className="text-[11px] text-white/50 mb-1">{reply.username} · {new Date(reply.created_at).toLocaleDateString()}</p>
+                                  <p className="text-[13px] text-white/70">{reply.message}</p>
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+                        )}
+
                     {/* REPLY */}
                     <div className="border-t border-white/5 pt-4">
                       <div className="flex items-center gap-2">
@@ -321,7 +349,6 @@ export default function AdminCommentsPage() {
                           placeholder="Reply..."
                           className="flex-1 h-11 px-4 rounded-2xl bg-black/20 border border-white/10 outline-none text-sm"
                         />
-
                         <button
                           onClick={() => sendReply(comment.id)}
                           className="h-11 min-w-[54px] px-4 rounded-2xl bg-white text-black hover:opacity-90 transition flex items-center justify-center"

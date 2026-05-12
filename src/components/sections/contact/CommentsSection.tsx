@@ -222,6 +222,27 @@ export default function CommentsSection() {
                     <p className="text-[12px] md:text-[13px] text-white/55">
                       {item.comment}
                     </p>
+                    
+
+                    {/* REPLIES */}
+                      {Array.isArray(item.replies) && item.replies.length > 0 && (
+                        <div className="mt-3 space-y-2">
+                          {item.replies.map((reply: any, ri: number) => (
+                            <div key={ri} className="flex gap-2 pl-2 border-l border-white/10">
+                              <div className="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center text-[9px] font-semibold shrink-0">
+                                A
+                              </div>
+                              <div>
+                                <p className="text-[10px] text-white/40 mb-0.5">
+                                  {reply.username} · {new Date(reply.created_at).toLocaleDateString()}
+                                </p>
+                                <p className="text-[12px] text-white/60">{reply.message}</p>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      )}
+
 
                     {item.image_url && (
                       <img
