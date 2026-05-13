@@ -23,7 +23,7 @@ export default function Navbar() {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20)
 
-      const sections = ['home', 'about', 'portfolio', 'contact']
+      const sections = ['home', 'about', 'experience', 'portfolio', 'contact']
 
       for (const sectionId of sections) {
         const section = document.getElementById(sectionId)
@@ -118,10 +118,10 @@ export default function Navbar() {
   const navItems = [
     { label: 'Home', id: 'home' },
     { label: 'About', id: 'about' },
+    { label: 'Experience', id: 'experience' },
     { label: 'Portfolio', id: 'portfolio' },
     { label: 'Contact', id: 'contact' },
   ]
-
   return (
     <motion.nav
       initial={{ opacity: 0, y: -40 }}

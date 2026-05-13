@@ -244,6 +244,7 @@ export default function About() {
               {/* DOWNLOAD CV */}
               <a
                 href="/assets/CV - Bohdan Kharuk.pdf"
+                download="CV - Bohdan Kharuk.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{ textDecoration: "none" }}
@@ -335,13 +336,21 @@ export default function About() {
                 <img
                   src="/assets/mephoto.png"
                   alt="Profile"
+                  // style={{
+                  //   width: 240,
+                  //   height: 240,
+                  //   borderRadius: "50%",
+                  //   objectFit: "cover",
+                  //   display: "block",
+                  // }}
                   style={{
-                    width: 240,
-                    height: 240,
-                    borderRadius: "50%",
-                    objectFit: "cover",
-                    display: "block",
-                  }}
+                  width: 240,
+                  height: 240,
+                  borderRadius: "50%",
+                  objectFit: "cover",
+                  objectPosition: "60% 15%",
+                  display: "block",
+                }}
                 />
               </div>
             </motion.div>

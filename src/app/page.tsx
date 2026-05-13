@@ -10,6 +10,7 @@ import About from '@/components/sections/About'
 import PortfolioShowcase from '@/components/sections/PortfolioShowcase'
 import ContactSection from '@/components/sections/contact/ContactSection'
 import WelcomeScreen from '@/components/WelcomeScreen'
+import Experience from '@/components/sections/Experience'
 
 import { hasPlayedIntro, setIntroPlayed } from '@/lib/introState'
 
@@ -76,6 +77,7 @@ useEffect(() => {
         <Navbar />
         <Hero showApp={showApp} />
         <About />
+        <Experience />
         <PortfolioShowcase />
         <ContactSection />
       </div>

@@ -7,6 +7,7 @@ import {
   Award,
   MessageSquare,
   Layers,
+  Briefcase,
   Menu,
   X,
 } from "lucide-react";
@@ -35,6 +36,10 @@ export default function Sidebar() {
       name: "Certificates",
       icon: Award,
       path: "/admin/certificates",
+    },
+    { name: "Experience", 
+      icon: Briefcase, 
+      path: "/admin/experience",
     },
     {
       name: "Comments",
