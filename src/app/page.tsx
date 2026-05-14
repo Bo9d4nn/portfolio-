@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { supabase } from '@/lib/supabase'
 
 import AnimatedBackground from '@/components/AnimatedBackground'
 import Navbar from '@/components/ui/Navbar'
@@ -22,7 +23,6 @@ useEffect(() => {
   const currentHash = window.location.hash
   const pathname = window.location.pathname
 
-  // kalau balik dari detail ke portfolio
   if (currentHash === '#portfolio') {
     setShowWelcome(false)
     setShowApp(true)
@@ -37,37 +37,51 @@ useEffect(() => {
 
   const isReload = navigationType === 'reload'
 
-  // hanya homepage yang reset intro
   if (isReload && pathname === '/') {
     sessionStorage.removeItem('introPlayed')
     sessionStorage.removeItem('heroPlayed')
-
-    if (window.location.hash) {
-      history.replaceState(null, '', '/')
-    }
-
-    window.scrollTo({
-      top: 0,
-      behavior: 'instant',
-    })
+    if (window.location.hash) history.replaceState(null, '', '/')
+    window.scrollTo({ top: 0, behavior: 'instant' })
   }
 
   if (!hasPlayedIntro()) {
     setShowWelcome(true)
-    setShowApp(true) //false
-
+    setShowApp(true)
     const timer = setTimeout(() => {
       setShowWelcome(false)
       setShowApp(true)
       setIntroPlayed()
-    }, 3200) //2800
-
+    }, 3200)
     return () => clearTimeout(timer)
   } else {
     setShowWelcome(false)
     setShowApp(true)
   }
 }, [])
+
+// Contador de visitas — useEffect separado
+useEffect(() => {
+  const countVisit = async () => {
+    const { data } = await supabase
+      .from('visits')
+      .select('*')
+      .single()
+
+    if (data) {
+      await supabase
+        .from('visits')
+        .update({ count: data.count + 1 })
+        .eq('id', data.id)
+    }
+
+    // Log de la visita con referrer
+    await supabase
+      .from('visit_logs')
+      .insert({ referrer: document.referrer || 'direct' })
+  }
+  countVisit()
+}, [])
+
 
   return (
     <main style={{ position: 'relative', overflow: 'hidden' }}>

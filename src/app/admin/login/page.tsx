@@ -53,25 +53,28 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#050505] relative overflow-hidden flex items-center justify-center px-4">
+    <div className="min-h-screen bg-[#1A202C] relative overflow-hidden flex items-center justify-center px-4">
       {/* BG GLOW */}
       <div className="absolute w-[500px] h-[500px] bg-white/[0.03] blur-[120px] rounded-full top-[-150px] left-[-150px]" />
       <div className="absolute w-[400px] h-[400px] bg-white/[0.02] blur-[120px] rounded-full bottom-[-120px] right-[-100px]" />
 
       {/* CARD */}
       <div className="relative z-10 w-full max-w-[420px]">
-        <div className="rounded-[32px] border border-white/10 bg-white/[0.03] backdrop-blur-xl p-7 sm:p-8 shadow-[0_0_60px_rgba(255,255,255,0.03)]">
+        <div
+          className="rounded-[32px] backdrop-blur-xl p-7 sm:p-8 shadow-[0_0_60px_rgba(255,255,255,0.03)]"
+          style={{ background: 'rgba(45,55,72,0.4)', border: '1px solid #3A4A5C' }}
+        >
           {/* TOP */}
           <div className="flex flex-col items-center text-center mb-8">
-            <div className="w-16 h-16 rounded-3xl bg-white/[0.06] border border-white/10 flex items-center justify-center mb-4">
+            <div className="w-16 h-16 rounded-3xl bg-white/[0.06] border border-[#3A4A5C] flex items-center justify-center mb-4">
               <ShieldCheck size={28} className="text-white" />
             </div>
 
-            <h1 className="text-2xl font-bold text-white">
+            <h1 className="text-2xl font-bold" style={{ color: '#F5ECD7' }}>
               Admin Login
             </h1>
 
-            <p className="text-sm text-white/40 mt-2">
+            <p className="text-sm mt-2" style={{ color: 'rgba(201,169,110,0.7)' }}>
               Login to access dashboard panel
             </p>
           </div>
@@ -92,7 +95,7 @@ export default function LoginPage() {
 
           {/* EMAIL */}
           <div className="mb-4">
-            <label className="text-sm text-white/50 mb-2 block">
+            <label className="text-sm mb-2 block" style={{ color: 'rgba(201,169,110,0.7)' }}>
               Email
             </label>
 
@@ -107,14 +110,15 @@ export default function LoginPage() {
                 placeholder="masukan email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full h-[56px] rounded-2xl bg-[#0c0c0c] border border-white/10 pl-12 pr-4 text-white outline-none focus:border-white/20 transition"
+                className="w-full h-[56px] rounded-2xl pl-12 pr-4 text-white outline-none transition"
+                style={{ background: 'rgba(26,32,44,0.8)', border: '1px solid #3A4A5C' }}
               />
             </div>
           </div>
 
           {/* PASSWORD */}
           <div className="mb-6">
-            <label className="text-sm text-white/50 mb-2 block">
+            <label className="text-sm mb-2 block" style={{ color: 'rgba(201,169,110,0.7)' }}>
               Password
             </label>
 
@@ -131,7 +135,8 @@ export default function LoginPage() {
                 onChange={(e) =>
                   setPassword(e.target.value)
                 }
-                className="w-full h-[56px] rounded-2xl bg-[#0c0c0c] border border-white/10 pl-12 pr-14 text-white outline-none focus:border-white/20 transition"
+                className="w-full h-[56px] rounded-2xl pl-12 pr-14 text-white outline-none transition"
+                style={{ background: 'rgba(26,32,44,0.8)', border: '1px solid #3A4A5C' }}
               />
 
               <button
@@ -154,7 +159,8 @@ export default function LoginPage() {
           <button
             onClick={handleLogin}
             disabled={loading}
-            className="w-full h-[56px] rounded-2xl bg-white text-black font-medium hover:scale-[1.01] active:scale-[0.99] transition flex items-center justify-center gap-2 disabled:opacity-60"
+            className="w-full h-[56px] rounded-2xl font-medium hover:scale-[1.01] active:scale-[0.99] transition flex items-center justify-center gap-2 disabled:opacity-60"
+            style={{ background: '#C9A96E', color: '#1A202C' }}
           >
             {loading ? (
               <>

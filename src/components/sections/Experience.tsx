@@ -30,11 +30,26 @@ export default function Experience() {
     fetchExperience()
   }, [])
 
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768)
+    check()
+    window.addEventListener('resize', check)
+    return () => window.removeEventListener('resize', check)
+  }, [])
+
+
   return (
     <section
       id="experience"
+      // style={{
+      //   padding: '80px 60px 60px 120px',
+      //   maxWidth: '1200px',
+      //   margin: '0 auto',
+      // }}
       style={{
-        padding: '80px 60px 60px 120px',
+        padding: isMobile ? '60px 20px 40px' : '80px 60px 60px 120px',
         maxWidth: '1200px',
         margin: '0 auto',
       }}

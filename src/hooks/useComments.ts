@@ -42,7 +42,7 @@ export default function useComments() {
       const data = await fetchCommentsService()
       setComments(data)
     } catch (err) {
-      console.log(err)
+      // console.log(err)
     }
   }
 

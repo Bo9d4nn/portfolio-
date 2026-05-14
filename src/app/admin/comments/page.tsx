@@ -136,12 +136,10 @@ export default function AdminCommentsPage() {
   };
 
   const sendReply = async (commentId: number) => {
-    console.log("sendReply called", commentId)
-    console.log("replyText state:", replyText)
-  console.log("text for id:", replyText[commentId])
+
     const text = replyText[commentId];
       if (!text?.trim()) return;
-      
+
       const target = comments.find((x) => x.id === commentId);
       const oldReplies = Array.isArray(target?.replies) ? target.replies : [];
       const newReply = {
@@ -155,7 +153,7 @@ export default function AdminCommentsPage() {
         .from("comments")
         .update({ replies: updatedReplies })
         .eq("id", commentId);
-        console.log("update result:", error)
+
 
       if (error) {
         console.error("Reply error:", error);
@@ -187,7 +185,7 @@ export default function AdminCommentsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a] text-white">
+    <div className="min-h-screen bg-[#1A202C] text-white">
       <Sidebar />
 
       <main className="lg:ml-[250px] min-h-screen px-4 sm:px-6 lg:px-8 pt-[90px] lg:pt-8 pb-8">
@@ -195,16 +193,16 @@ export default function AdminCommentsPage() {
           {/* HEADER */}
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
             <div>
-              <h1 className="text-2xl md:text-3xl font-bold">Comments</h1>
+              <h1 className="text-2xl md:text-3xl font-bold" style={{ color: '#F5ECD7' }}>Comments</h1>
 
-              <p className="text-sm text-white/40 mt-1">
+              <p className="text-sm mt-1" style={{ color: 'rgba(201,169,110,0.7)' }}>
                 Manage portfolio comments
               </p>
             </div>
 
             <button
               onClick={fetchComments}
-              className="h-11 px-5 rounded-2xl border border-white/10 bg-white/[0.04] hover:bg-white/[0.08] transition flex items-center justify-center gap-2 text-sm w-full sm:w-fit"
+              className="h-11 px-5 rounded-2xl border border-[#3A4A5C] bg-white/[0.04] hover:bg-white/[0.08] transition flex items-center justify-center gap-2 text-sm w-full sm:w-fit"
             >
               <RefreshCcw size={14} />
               Refresh
@@ -214,11 +212,17 @@ export default function AdminCommentsPage() {
           {/* CONTENT */}
           <div className="space-y-4">
             {loading ? (
-              <div className="rounded-3xl border border-white/10 bg-white/[0.03] py-20 text-center text-white/40">
+              <div
+                className="rounded-3xl border border-[#3A4A5C] py-20 text-center"
+                style={{ background: 'rgba(45,55,72,0.4)', color: 'rgba(232,213,176,0.3)' }}
+              >
                 Loading comments...
               </div>
             ) : comments.length === 0 ? (
-              <div className="rounded-3xl border border-white/10 bg-white/[0.03] py-20 flex flex-col items-center gap-3 text-white/40">
+              <div
+                className="rounded-3xl border border-[#3A4A5C] py-20 flex flex-col items-center gap-3"
+                style={{ background: 'rgba(45,55,72,0.4)', color: 'rgba(232,213,176,0.3)' }}
+              >
                 <MessageSquare size={28} />
                 No comments yet
               </div>
@@ -226,7 +230,8 @@ export default function AdminCommentsPage() {
               comments.map((comment) => (
                 <div
                   key={comment.id}
-                  className="rounded-3xl border border-white/10 bg-white/[0.03] p-4 sm:p-5 hover:border-white/20 transition"
+                  className="rounded-3xl border border-[#3A4A5C] p-4 sm:p-5 hover:border-[#4A5568] transition"
+                  style={{ background: 'rgba(45,55,72,0.4)' }}
                 >
                   <div className="flex flex-col gap-5">
                     {/* TOP */}
@@ -258,7 +263,7 @@ export default function AdminCommentsPage() {
                         {comment.image_url && (
                           <img
                             src={comment.image_url}
-                            className="rounded-2xl border border-white/10 w-full max-w-full sm:max-w-[260px] object-cover mb-4"
+                            className="rounded-2xl border border-[#3A4A5C] w-full max-w-full sm:max-w-[260px] object-cover mb-4"
                           />
                         )}
 
@@ -284,7 +289,7 @@ export default function AdminCommentsPage() {
                           className={`w-11 h-11 rounded-2xl border flex items-center justify-center transition ${
                             comment.liked_by_admin
                               ? "bg-pink-500/20 border-pink-500/30 text-pink-300"
-                              : "bg-white/5 border-white/10 hover:bg-white/10"
+                              : "bg-white/5 border-[#3A4A5C] hover:bg-white/10"
                           }`}
                         >
                           <Heart
@@ -302,7 +307,7 @@ export default function AdminCommentsPage() {
                           className={`w-11 h-11 rounded-2xl border flex items-center justify-center transition ${
                             comment.is_pinned
                               ? "bg-yellow-500/20 border-yellow-500/30 text-yellow-300"
-                              : "bg-white/5 border-white/10 hover:bg-white/10"
+                              : "bg-white/5 border-[#3A4A5C] hover:bg-white/10"
                           }`}
                         >
                           <Pin size={15} />
@@ -347,11 +352,13 @@ export default function AdminCommentsPage() {
                             }))
                           }
                           placeholder="Reply..."
-                          className="flex-1 h-11 px-4 rounded-2xl bg-black/20 border border-white/10 outline-none text-sm"
+                          className="flex-1 h-11 px-4 rounded-2xl outline-none text-sm"
+                          style={{ background: 'rgba(26,32,44,0.8)', border: '1px solid #3A4A5C' }}
                         />
                         <button
                           onClick={() => sendReply(comment.id)}
-                          className="h-11 min-w-[54px] px-4 rounded-2xl bg-white text-black hover:opacity-90 transition flex items-center justify-center"
+                          className="h-11 min-w-[54px] px-4 rounded-2xl hover:opacity-90 transition flex items-center justify-center"
+                          style={{ background: '#C9A96E', color: '#1A202C' }}
                         >
                           <Send size={15} />
                         </button>

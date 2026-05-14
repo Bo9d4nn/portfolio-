@@ -175,7 +175,7 @@ export default function TechStackPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a] text-white">
+    <div className="min-h-screen bg-[#1A202C] text-white">
       {/* SIDEBAR */}
       <div className="fixed left-0 top-0 h-screen z-40">
         <Sidebar />
@@ -187,11 +187,11 @@ export default function TechStackPage() {
           {/* HEADER */}
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
             <div>
-              <h1 className="text-2xl sm:text-3xl font-bold">
+              <h1 className="text-2xl sm:text-3xl font-bold" style={{ color: '#F5ECD7' }}>
                 Tech Stack
               </h1>
 
-              <p className="text-sm text-white/40 mt-1">
+              <p className="text-sm mt-1" style={{ color: 'rgba(201,169,110,0.7)' }}>
                 Manage technology stack
               </p>
             </div>
@@ -201,7 +201,8 @@ export default function TechStackPage() {
                 resetForm();
                 setOpen(true);
               }}
-              className="w-full sm:w-auto flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-white text-black hover:scale-[1.02] transition"
+              className="w-full sm:w-auto flex items-center justify-center gap-2 px-4 py-3 rounded-xl hover:scale-[1.02] transition"
+              style={{ background: '#C9A96E', color: '#1A202C' }}
             >
               <Plus size={16} />
               Add Tech
@@ -210,11 +211,14 @@ export default function TechStackPage() {
 
           {/* GRID */}
           {loading ? (
-            <div className="text-white/40 text-sm">
+            <div className="text-sm" style={{ color: 'rgba(232,213,176,0.3)' }}>
               Loading...
             </div>
           ) : techStacks.length === 0 ? (
-            <div className="rounded-2xl border border-white/10 bg-white/[0.03] h-[220px] flex items-center justify-center text-white/35 text-sm">
+            <div
+              className="rounded-2xl border border-[#3A4A5C] h-[220px] flex items-center justify-center text-white/35 text-sm"
+              style={{ background: 'rgba(45,55,72,0.4)' }}
+            >
               No tech stack
             </div>
           ) : (
@@ -222,10 +226,11 @@ export default function TechStackPage() {
               {techStacks.map((item) => (
                 <div
                   key={item.id}
-                  className="rounded-2xl border border-white/10 bg-white/[0.03] p-4 sm:p-5 hover:border-white/20 transition"
+                  className="rounded-2xl border border-[#3A4A5C] p-4 sm:p-5 hover:border-[#4A5568] transition"
+                  style={{ background: 'rgba(45,55,72,0.4)' }}
                 >
                   <div className="flex justify-between items-start mb-4">
-                    <div className="w-14 h-14 rounded-2xl bg-white/[0.04] border border-white/10 overflow-hidden flex items-center justify-center shrink-0">
+                    <div className="w-14 h-14 rounded-2xl bg-white/[0.04] border border-[#3A4A5C] overflow-hidden flex items-center justify-center shrink-0">
                       {item.logo_url ? (
                         <img
                           src={item.logo_url}
@@ -239,7 +244,7 @@ export default function TechStackPage() {
                     <div className="flex gap-2 ml-3">
                       <button
                         onClick={() => handleEdit(item)}
-                        className="w-9 h-9 rounded-xl border border-white/10 hover:bg-white/10 flex items-center justify-center transition"
+                        className="w-9 h-9 rounded-xl border border-[#3A4A5C] hover:bg-white/10 flex items-center justify-center transition"
                       >
                         <Pencil size={14} />
                       </button>
@@ -265,8 +270,11 @@ export default function TechStackPage() {
 
       {/* MODAL */}
       {open && (
-        <div className="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm flex items-center justify-center px-4 py-6">
-          <div className="w-full max-w-md rounded-3xl bg-[#111] border border-white/10 p-5 sm:p-6 max-h-[90vh] overflow-y-auto">
+        <div className="fixed inset-0 z-50 bg-[#1A202C]/70 backdrop-blur-sm flex items-center justify-center px-4 py-6">
+          <div
+            className="w-full max-w-md rounded-3xl p-5 sm:p-6 max-h-[90vh] overflow-y-auto"
+            style={{ background: '#1E2738', border: '1px solid #3A4A5C' }}
+          >
             {/* HEADER */}
             <div className="flex items-center justify-between mb-6">
               <h2 className="text-lg sm:text-xl font-semibold">
@@ -285,7 +293,10 @@ export default function TechStackPage() {
             </div>
 
             {/* IMAGE */}
-            <label className="border border-dashed border-white/10 rounded-2xl bg-[#0f0f0f] h-40 sm:h-44 flex flex-col items-center justify-center cursor-pointer overflow-hidden mb-4">
+            <label
+              className="border border-dashed border-[#3A4A5C] rounded-2xl h-40 sm:h-44 flex flex-col items-center justify-center cursor-pointer overflow-hidden mb-4"
+              style={{ background: 'rgba(26,32,44,0.8)' }}
+            >
               {preview ? (
                 <img
                   src={preview}
@@ -317,7 +328,8 @@ export default function TechStackPage() {
               placeholder="Tech Name"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              className="w-full px-4 py-3 rounded-2xl bg-[#0f0f0f] border border-white/10 outline-none mb-5 text-sm"
+              className="w-full px-4 py-3 rounded-2xl outline-none mb-5 text-sm"
+              style={{ background: 'rgba(26,32,44,0.8)', border: '1px solid #3A4A5C' }}
             />
 
             {/* BUTTONS */}
@@ -327,7 +339,7 @@ export default function TechStackPage() {
                   setOpen(false);
                   resetForm();
                 }}
-                className="w-full sm:w-auto px-4 py-2.5 rounded-xl border border-white/10 hover:bg-white/5 transition"
+                className="w-full sm:w-auto px-4 py-2.5 rounded-xl border border-[#3A4A5C] hover:bg-[#3A4A5C]/30 transition"
               >
                 Cancel
               </button>
@@ -335,7 +347,8 @@ export default function TechStackPage() {
               <button
                 onClick={handleSave}
                 disabled={saving}
-                className="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-white text-black hover:opacity-90 transition"
+                className="w-full sm:w-auto px-5 py-2.5 rounded-xl hover:opacity-90 transition"
+                style={{ background: '#C9A96E', color: '#1A202C' }}
               >
                 {saving ? "Saving..." : "Save"}
               </button>

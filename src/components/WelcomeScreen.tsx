@@ -49,7 +49,7 @@ export default function WelcomeScreen() {
             hidden: {},
             visible: {
               transition: {
-                staggerChildren: 0.35,
+                staggerChildren: 0.15, //0.35
               },
             },
           }}
@@ -78,7 +78,7 @@ export default function WelcomeScreen() {
                 },
               }}
               transition={{
-                duration: 1.8,
+                duration: 1.2,//1.8
                 ease: [0.22, 1, 0.36, 1],
               }}
               animate={{

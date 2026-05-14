@@ -110,7 +110,7 @@ export default function ExperiencePage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a] text-white">
+    <div className="min-h-screen bg-[#1A202C] text-white">
       <Sidebar />
 
       <main className="lg:ml-[250px] min-h-screen px-4 sm:px-6 lg:px-8 pt-[90px] lg:pt-8 pb-8">
@@ -119,12 +119,13 @@ export default function ExperiencePage() {
           {/* HEADER */}
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-8">
             <div>
-              <h1 className="text-2xl md:text-3xl font-bold">Experience</h1>
-              <p className="text-sm text-white/40 mt-1">Manage your work history</p>
+              <h1 className="text-2xl md:text-3xl font-bold" style={{ color: '#F5ECD7' }}>Experience</h1>
+              <p className="text-sm mt-1" style={{ color: 'rgba(201,169,110,0.7)' }}>Manage your work history</p>
             </div>
             <button
               onClick={openAdd}
-              className="flex items-center gap-2 px-4 py-3 rounded-xl text-sm font-medium bg-white text-black hover:scale-[1.02] transition w-full sm:w-auto justify-center"
+              className="flex items-center gap-2 px-4 py-3 rounded-xl text-sm font-medium hover:scale-[1.02] transition w-full sm:w-auto justify-center"
+              style={{ background: '#C9A96E', color: '#1A202C' }}
             >
               <Plus size={16} />
               Add Experience
@@ -133,16 +134,21 @@ export default function ExperiencePage() {
 
           {/* LIST */}
           {loading ? (
-            <div className="text-white/40 text-sm">Loading...</div>
+            <div className="text-sm" style={{ color: 'rgba(232,213,176,0.3)' }}>Loading...</div>
           ) : experiences.length === 0 ? (
-            <div className="rounded-2xl border border-white/10 bg-white/[0.03] py-20 flex items-center justify-center text-white/35 text-sm">
+            <div
+              className="rounded-2xl border border-[#3A4A5C] py-20 flex items-center justify-center text-white/35 text-sm"
+              style={{ background: 'rgba(45,55,72,0.4)' }}
+            >
               No experience entries yet
             </div>
           ) : (
             <div className="flex flex-col gap-4">
               {experiences.map((exp) => (
                 <div key={exp.id}
-                  className="rounded-2xl border border-white/10 bg-white/[0.03] p-5 hover:border-white/20 transition">
+                  className="rounded-2xl border border-[#3A4A5C] p-5 hover:border-[#4A5568] transition"
+                  style={{ background: 'rgba(45,55,72,0.4)' }}
+                >
                   <div className="flex justify-between items-start gap-4 flex-wrap">
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-3 mb-1 flex-wrap">
@@ -154,12 +160,12 @@ export default function ExperiencePage() {
                         )}
                         <span className="text-xs text-white/30 font-mono">{exp.period}</span>
                       </div>
-                      <p className="text-sm text-white/50 mb-2">{exp.role}</p>
-                      <p className="text-sm text-white/40 leading-relaxed mb-3">{exp.description}</p>
+                      <p className="text-sm mb-2" style={{ color: 'rgba(201,169,110,0.7)' }}>{exp.role}</p>
+                      <p className="text-sm leading-relaxed mb-3" style={{ color: 'rgba(201,169,110,0.7)' }}>{exp.description}</p>
                       <div className="flex flex-wrap gap-2">
                         {exp.tags.map((tag, i) => (
                           <span key={i}
-                            className="text-[11px] px-2 py-1 rounded-md border border-white/10 text-white/40 bg-white/[0.03]">
+                            className="text-[11px] px-2 py-1 rounded-md border border-[#3A4A5C] text-white/40 bg-white/[0.03]">
                             {tag}
                           </span>
                         ))}
@@ -167,7 +173,7 @@ export default function ExperiencePage() {
                     </div>
                     <div className="flex gap-2 shrink-0">
                       <button onClick={() => openEdit(exp)}
-                        className="w-9 h-9 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 flex items-center justify-center transition text-white/60 hover:text-white">
+                        className="w-9 h-9 rounded-xl border border-[#3A4A5C] bg-white/5 hover:bg-white/10 flex items-center justify-center transition text-white/60 hover:text-white">
                         <Pencil size={14} />
                       </button>
                       <button onClick={() => handleDelete(exp.id)}
@@ -190,7 +196,8 @@ export default function ExperiencePage() {
           onClick={() => setModalOpen(false)}
         >
           <div
-            className="relative w-full max-w-lg rounded-[24px] p-6 md:p-8 max-h-[90vh] overflow-y-auto bg-[#111] border border-white/10"
+            className="relative w-full max-w-lg rounded-[24px] p-6 md:p-8 max-h-[90vh] overflow-y-auto"
+            style={{ background: '#1E2738', border: '1px solid #3A4A5C' }}
             onClick={(e) => e.stopPropagation()}
           >
             <button onClick={() => setModalOpen(false)}
@@ -209,34 +216,37 @@ export default function ExperiencePage() {
                 { label: "Period", key: "period", placeholder: "Oct 2025 — Present" },
               ].map(({ label, key, placeholder }) => (
                 <div key={key}>
-                  <label className="text-xs text-white/50 mb-1.5 block">{label}</label>
+                  <label className="text-xs mb-1.5 block" style={{ color: 'rgba(201,169,110,0.7)' }}>{label}</label>
                   <input
                     value={(form as any)[key]}
                     onChange={(e) => setForm((prev) => ({ ...prev, [key]: e.target.value }))}
                     placeholder={placeholder}
-                    className="w-full rounded-xl px-4 py-3 text-sm outline-none bg-black/20 border border-white/10 focus:border-white/30 transition"
+                    className="w-full rounded-xl px-4 py-3 text-sm outline-none transition"
+                    style={{ background: 'rgba(26,32,44,0.8)', border: '1px solid #3A4A5C' }}
                   />
                 </div>
               ))}
 
               <div>
-                <label className="text-xs text-white/50 mb-1.5 block">Description</label>
+                <label className="text-xs mb-1.5 block" style={{ color: 'rgba(201,169,110,0.7)' }}>Description</label>
                 <textarea
                   rows={4}
                   value={form.description}
                   onChange={(e) => setForm((prev) => ({ ...prev, description: e.target.value }))}
                   placeholder="Describe your role and responsibilities..."
-                  className="w-full rounded-xl px-4 py-3 text-sm outline-none resize-none bg-black/20 border border-white/10 focus:border-white/30 transition"
+                  className="w-full rounded-xl px-4 py-3 text-sm outline-none resize-none transition"
+                  style={{ background: 'rgba(26,32,44,0.8)', border: '1px solid #3A4A5C' }}
                 />
               </div>
 
               <div>
-                <label className="text-xs text-white/50 mb-1.5 block">Tags (comma separated)</label>
+                <label className="text-xs mb-1.5 block" style={{ color: 'rgba(201,169,110,0.7)' }}>Tags (comma separated)</label>
                 <input
                   value={tagsInput}
                   onChange={(e) => setTagsInput(e.target.value)}
                   placeholder="C#, ASP.NET, React"
-                  className="w-full rounded-xl px-4 py-3 text-sm outline-none bg-black/20 border border-white/10 focus:border-white/30 transition"
+                  className="w-full rounded-xl px-4 py-3 text-sm outline-none transition"
+                  style={{ background: 'rgba(26,32,44,0.8)', border: '1px solid #3A4A5C' }}
                 />
               </div>
 
@@ -256,7 +266,8 @@ export default function ExperiencePage() {
               <button
                 onClick={handleSave}
                 disabled={saving}
-                className="w-full py-3 rounded-xl text-sm font-medium flex items-center justify-center gap-2 bg-white text-black hover:opacity-90 transition disabled:opacity-50"
+                className="w-full py-3 rounded-xl text-sm font-medium flex items-center justify-center gap-2 hover:opacity-90 transition disabled:opacity-50"
+                style={{ background: '#C9A96E', color: '#1A202C' }}
               >
                 <Save size={15} />
                 {saving ? "Saving..." : editing ? "Save Changes" : "Add Experience"}

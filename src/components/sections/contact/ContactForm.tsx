@@ -16,6 +16,7 @@ import {
   FaLinkedinIn,
   FaInstagram,
   FaGithub,
+  FaBriefcase,
   FaYoutube,
   FaTiktok,
 } from 'react-icons/fa'
@@ -47,26 +48,20 @@ const socialLinks = [
     title: 'Instagram',
     user: '@instagram',
     icon: FaInstagram,
-    link: 'https://www.instagram.com/itsmeikky_12?igsh=ZHFpMTJ1bHQzeDAx',
+    link: 'https://www.instagram.com/bo9daaan.04?igsh=MzQwN29sdHRtYjBw&utm_source=qr',
   },
-  // {
-  //   title: 'Youtube',
-  //   user: '@youtube',
-  //   icon: FaYoutube,
-  //   link: 'https://youtube.com/@zettaajah?si=QRjJGD4zCQG8aIHX',
-  // },
   {
     title: 'Github',
     user: '@github',
     icon: FaGithub,
     link: 'https://github.com/Bo9d4nn',
   },
-  // {
-  //   title: 'TikTok',
-  //   user: '@tiktok',
-  //   icon: FaTiktok,
-  //   link: 'https://www.tiktok.com/@itsme.ikky_?_r=1&_t=ZS-95yAYr5PHUb',
-  // },
+  {
+  title: 'Djinni',
+  user: '@bohdan-kharuk',
+  icon: FaBriefcase,
+  link: 'https://djinni.co/q/d29b56e9c1/',
+},
 ]
 
 export default function ContactForm() {
@@ -213,7 +208,7 @@ export default function ContactForm() {
         </motion.a>
 
         {/* GRID */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        <div className="flex flex-col gap-3">
           {socialLinks.map((item, i) => {
             const Icon = item.icon
 

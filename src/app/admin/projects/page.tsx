@@ -68,7 +68,7 @@ export default function ProjectsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a] text-white overflow-hidden">
+    <div className="min-h-screen bg-[#1A202C] text-white overflow-hidden">
       {/* SIDEBAR */}
       <div className="fixed left-0 top-0 h-screen z-40">
         <Sidebar />
@@ -80,18 +80,19 @@ export default function ProjectsPage() {
           {/* HEADER */}
           <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-5 mb-8">
             <div>
-              <h1 className="text-2xl sm:text-3xl font-bold">
+              <h1 className="text-2xl sm:text-3xl font-bold" style={{ color: '#F5ECD7' }}>
                 Projects
               </h1>
 
-              <p className="text-white/40 text-sm mt-1">
+              <p className="text-sm mt-1" style={{ color: 'rgba(201,169,110,0.7)' }}>
                 Manage your portfolio projects
               </p>
             </div>
 
             <button
               onClick={() => setOpen(true)}
-              className="w-full sm:w-auto flex items-center justify-center gap-2 px-4 py-3 bg-white text-black rounded-xl hover:scale-[1.02] transition"
+              className="w-full sm:w-auto flex items-center justify-center gap-2 px-4 py-3 rounded-xl hover:scale-[1.02] transition"
+              style={{ background: '#C9A96E', color: '#1A202C' }}
             >
               <Plus size={16} />
               Add Project
@@ -100,11 +101,14 @@ export default function ProjectsPage() {
 
           {/* GRID */}
           {loading ? (
-            <div className="text-white/40 text-sm">
+            <div className="text-sm" style={{ color: 'rgba(232,213,176,0.3)' }}>
               Loading projects...
             </div>
           ) : projects.length === 0 ? (
-            <div className="rounded-2xl border border-white/10 bg-white/[0.03] h-[240px] flex items-center justify-center text-white/35">
+            <div
+              className="rounded-2xl border border-[#3A4A5C] h-[240px] flex items-center justify-center text-white/35"
+              style={{ background: 'rgba(45,55,72,0.4)' }}
+            >
               No projects found
             </div>
           ) : (
@@ -112,7 +116,8 @@ export default function ProjectsPage() {
               {projects.map((project) => (
                 <div
                   key={project.id}
-                  className="border border-white/10 bg-white/[0.03] rounded-2xl p-3 lg:p-4 hover:border-white/25 hover:-translate-y-1 transition-all duration-300 flex flex-col"
+                  className="border border-[#3A4A5C] rounded-2xl p-3 lg:p-4 hover:border-[#4A5568] hover:-translate-y-1 transition-all duration-300 flex flex-col"
+                  style={{ background: 'rgba(45,55,72,0.4)' }}
                 >
                   {/* IMAGE */}
                   <div className="w-full h-[150px] sm:h-[160px] lg:h-[140px] rounded-xl overflow-hidden bg-white/[0.03] mb-3">
@@ -132,7 +137,7 @@ export default function ProjectsPage() {
                   </h2>
 
                   {/* DESCRIPTION */}
-                  <p className="text-[12px] text-white/50 line-clamp-2 mb-3 leading-relaxed min-h-[34px]">
+                  <p className="text-[12px] line-clamp-2 mb-3 leading-relaxed min-h-[34px]" style={{ color: 'rgba(201,169,110,0.7)' }}>
                     {project.description}
                   </p>
 
@@ -152,7 +157,7 @@ export default function ProjectsPage() {
                           `/admin/projects/${project.id}`
                         )
                       }
-                      className="px-3 py-1.5 rounded-xl border border-white/10 hover:bg-white hover:text-black transition text-[12px]"
+                      className="px-3 py-1.5 rounded-xl border border-[#3A4A5C] hover:bg-white hover:text-black transition text-[12px]"
                     >
                       Details
                     </button>
