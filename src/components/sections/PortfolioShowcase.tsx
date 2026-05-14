@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import {
   X, ChevronDown, ChevronUp,
@@ -18,6 +18,22 @@ export default function PortfolioShowcase() {
   const [selectedCertificate, setSelectedCertificate] = useState<any>(null)
   const [activeTab, setActiveTab] = useState('projects')
   const [showAllProjects, setShowAllProjects] = useState(false)
+
+  useEffect(() => {
+    const handler = (e: any) => {
+      setActiveTab(e.detail)
+    }
+    window.addEventListener('setPortfolioTab', handler)
+
+    // Also check sessionStorage on mount
+    const savedTab = sessionStorage.getItem('portfolioTab')
+    if (savedTab) {
+      setActiveTab(savedTab)
+      sessionStorage.removeItem('portfolioTab')
+    }
+
+    return () => window.removeEventListener('setPortfolioTab', handler)
+  }, [])
 
   const displayedProjects = showAllProjects ? projects : projects.slice(0, 3)
 

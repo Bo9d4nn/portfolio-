@@ -62,6 +62,7 @@ export default function About() {
 
   const [projectCount, setProjectCount] = useState(0);
   const [certificateCount, setCertificateCount] = useState(0);
+  const [techStackCount, setTechStackCount] = useState(0);
 
   useEffect(() => {
     const check = () => setIsMobile(window.innerWidth < 768);
@@ -74,6 +75,17 @@ export default function About() {
     return () => window.removeEventListener("resize", check);
   }, []);
 
+  const scrollToSection = (id: string, tab?: string) => {
+  const el = document.getElementById(id)
+  if (el) {
+    el.scrollIntoView({ behavior: "smooth" })
+  }
+  if (tab) {
+    sessionStorage.setItem('portfolioTab', tab)
+    window.dispatchEvent(new CustomEvent('setPortfolioTab', { detail: tab }))
+  }
+}
+
   const fetchStats = async () => {
     try {
       const { count: projects } = await supabase
@@ -84,11 +96,17 @@ export default function About() {
         .from("certificates")
         .select("*", { count: "exact", head: true });
 
+      const { count: techStack } = await supabase
+        .from("tech_stack")
+        .select("*", { count: "exact", head: true });
+
       setProjectCount(projects || 0);
       setCertificateCount(certificates || 0);
+      setTechStackCount(techStack || 0);
     } catch {
       setProjectCount(0);
       setCertificateCount(0);
+      setTechStackCount(0);
     }
   };
 
@@ -106,17 +124,28 @@ export default function About() {
       icon: <Code size={16} />,
       value: String(projectCount),
       title: "PROJECTS",
+      target: "portfolio",
+      tab: "projects",
     },
     {
       icon: <Award size={16} />,
       value: String(certificateCount),
       title: "CERTIFICATES",
+      target: "portfolio",
+      tab: "certificates",
     },
     {
       icon: <Globe size={16} />,
-      value: String(projectCount + certificateCount),
-      title: "COMPLETED WORKS",
+      value: String(techStackCount),
+      title: "TECH STACK",
+      target: "portfolio",
+      tab: "techstack",
     },
+    // {
+    //   icon: <Globe size={16} />,
+    //   value: String(projectCount + certificateCount),
+    //   title: "COMPLETED WORKS",
+    // },
   ];
 
   return (
@@ -375,6 +404,7 @@ export default function About() {
               key={i}
               variants={pop}
               whileHover={{ scale: 1.03 }}
+              onClick={() => scrollToSection(item.target, item.tab)}
               style={{
                 position: "relative",
                 padding: 18,
@@ -420,17 +450,7 @@ export default function About() {
                 {item.title}
               </div>
 
-              <div
-                onClick={scrollToPortfolio}
-                style={{
-                  position: "absolute",
-                  bottom: 14,
-                  right: 14,
-                  cursor: "pointer",
-                }}
-              >
-                <ArrowUpRight size={15} />
-              </div>
+
             </motion.div>
           ))}
         </motion.div>
