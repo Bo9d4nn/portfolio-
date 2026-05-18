@@ -1,0 +1,68 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "experience": "Experience",
+    "portfolio": "Portfolio",
+    "contact": "Contact"
+  },
+  "hero": {
+    "available": "Available for work",
+    "role1": "Full Stack",
+    "role2": "Developer",
+    "description": "Full stack developer with experience in React, FastAPI, Next.js and C# / ASP.NET. I enjoy building modern web applications from the ground up — clean code, scalable architecture, and interfaces that actually feel good to use.",
+    "explore": "↓ explore my work below",
+    "open": "✓ open to full-time & freelance opportunities"
+  },
+  "about": {
+    "label": "ABOUT ME",
+    "description": "Final year student finishing a DAW degree (Web Application Development), with hands-on experience building full-stack applications using React, Python, and .NET.",
+    "quote": "Turning ideas into clean, modern, and meaningful digital experiences.",
+    "downloadCV": "Download CV",
+    "viewProjects": "View Projects",
+    "projects": "PROJECTS",
+    "certificates": "CERTIFICATES",
+    "techStack": "TECH STACK"
+  },
+  "experience": {
+    "label": "EXPERIENCE",
+    "title": "Work History"
+  },
+  "portfolio": {
+    "title": "Portfolio Showcase",
+    "subtitle": "Explore my journey through projects, certifications, and technical expertise.",
+    "projects": "Projects",
+    "certificates": "Certificates",
+    "techStack": "Tech Stack",
+    "details": "Details",
+    "seeMore": "See More",
+    "seeLess": "See Less",
+    "noLink": "No Link",
+    "liveDemo": "Live Demo",
+    "technologies": "Technologies",
+    "keyFeatures": "Key Features",
+    "viewCredential": "View Credential"
+  },
+  "contact": {
+    "title": "Contact Me",
+    "subtitle": "Have something in mind? Send a message and let's connect.",
+    "getInTouch": "Get In Touch",
+    "description": "Feel free to reach out if you want to collaborate, discuss ideas, or simply say hello.",
+    "yourName": "Your Name",
+    "yourEmail": "Your Email",
+    "yourMessage": "Your Message",
+    "send": "Send Message",
+    "sending": "Sending...",
+    "sent": "✓ Message Sent!",
+    "connectWith": "Connect With Me",
+    "comments": "Comments",
+    "leaveThought": "Leave your thoughts here",
+    "postComment": "Post Comment",
+    "posting": "Posting..."
+  },
+  "welcome": {
+    "line1": "Welcome",
+    "line2": "to my",
+    "line3": "Portfolio Website"
+  }
+}

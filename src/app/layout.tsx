@@ -1,5 +1,6 @@
 import "./globals.css";
 import RefreshRedirect from '@/components/RefreshRedirect'
+import I18nProvider from '@/components/I18nProvider'
 
 export const metadata = {
   metadataBase: new URL('https://bohdan-portfolio.vercel.app'),
@@ -34,17 +35,15 @@ export const metadata = {
   },
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <body>
-        <RefreshRedirect />
-        {children}
+        <I18nProvider>
+          <RefreshRedirect />
+          {children}
+        </I18nProvider>
       </body>
     </html>
-  );
+  )
 }

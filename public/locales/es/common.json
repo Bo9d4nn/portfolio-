@@ -1,0 +1,68 @@
+{
+  "nav": {
+    "home": "Inicio",
+    "about": "Sobre mí",
+    "experience": "Experiencia",
+    "portfolio": "Portfolio",
+    "contact": "Contacto"
+  },
+  "hero": {
+    "available": "Disponible para trabajar",
+    "role1": "Desarrollador",
+    "role2": "Full Stack",
+    "description": "Desarrollador full stack con experiencia en React, FastAPI, Next.js y C# / ASP.NET. Me gusta construir aplicaciones web modernas desde cero — código limpio, arquitectura escalable e interfaces que se sienten bien al usar.",
+    "explore": "↓ explora mi trabajo abajo",
+    "open": "✓ abierto a oportunidades a tiempo completo y freelance"
+  },
+  "about": {
+    "label": "SOBRE MÍ",
+    "description": "Estudiante de último año finalizando el grado DAW (Desarrollo de Aplicaciones Web), con experiencia práctica construyendo aplicaciones full-stack con React, Python y .NET.",
+    "quote": "Convirtiendo ideas en experiencias digitales limpias, modernas y significativas.",
+    "downloadCV": "Descargar CV",
+    "viewProjects": "Ver Proyectos",
+    "projects": "PROYECTOS",
+    "certificates": "CERTIFICADOS",
+    "techStack": "TECNOLOGÍAS"
+  },
+  "experience": {
+    "label": "EXPERIENCIA",
+    "title": "Historial Laboral"
+  },
+  "portfolio": {
+    "title": "Portfolio",
+    "subtitle": "Explora mi trayectoria a través de proyectos, certificaciones y experiencia técnica.",
+    "projects": "Proyectos",
+    "certificates": "Certificados",
+    "techStack": "Tecnologías",
+    "details": "Detalles",
+    "seeMore": "Ver más",
+    "seeLess": "Ver menos",
+    "noLink": "Sin enlace",
+    "liveDemo": "Demo en vivo",
+    "technologies": "Tecnologías",
+    "keyFeatures": "Características",
+    "viewCredential": "Ver credencial"
+  },
+  "contact": {
+    "title": "Contacto",
+    "subtitle": "¿Tienes algo en mente? Envía un mensaje y conectemos.",
+    "getInTouch": "Ponte en contacto",
+    "description": "No dudes en contactarme si quieres colaborar, discutir ideas o simplemente saludar.",
+    "yourName": "Tu nombre",
+    "yourEmail": "Tu email",
+    "yourMessage": "Tu mensaje",
+    "send": "Enviar mensaje",
+    "sending": "Enviando...",
+    "sent": "✓ ¡Mensaje enviado!",
+    "connectWith": "Conéctate conmigo",
+    "comments": "Comentarios",
+    "leaveThought": "Deja tu opinión aquí",
+    "postComment": "Publicar comentario",
+    "posting": "Publicando..."
+  },
+  "welcome": {
+    "line1": "Bienvenido",
+    "line2": "a mi",
+    "line3": "Portfolio"
+  }
+}

@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
+import { useTranslation } from 'react-i18next'
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
@@ -12,6 +13,13 @@ export default function Navbar() {
 
   // 🔥 navbar muncul sekali aja
   const [showNavbar, setShowNavbar] = useState(false)
+
+
+  const { i18n } = useTranslation()
+
+  const toggleLanguage = () => {
+    i18n.changeLanguage(i18n.language === 'en' ? 'es' : 'en')
+  }
 
   useEffect(() => {
     setMounted(true)
@@ -213,6 +221,7 @@ export default function Navbar() {
                 </a>
               )
             })}
+            
           </div>
         )}
 
