@@ -1,6 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import { useTranslation } from 'react-i18next'
 import { ArrowRight, ArrowUpRight } from 'lucide-react'
 
 type Props = {
@@ -22,6 +23,7 @@ export default function PortfolioCard({
   live_url,
   onDetails,
 }: Props) {
+  const { t } = useTranslation()
   return (
     <motion.div
       initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50, y: 20 }}
@@ -48,10 +50,10 @@ export default function PortfolioCard({
         {live_url ? (
           <a href={live_url} target="_blank"
             className="flex items-center gap-2 text-[13px] text-white/70 hover:text-white transition-all">
-            Live Demo <ArrowUpRight size={14} />
+            {t('portfolio.liveDemo')} <ArrowUpRight size={14} />
           </a>
         ) : (
-          <div className="text-[13px] text-white/35">No Link</div>
+          <div className="text-[13px] text-white/35">{t('portfolio.noLink')}</div>
         )}
 
         {id && (
@@ -59,7 +61,7 @@ export default function PortfolioCard({
             onClick={onDetails}
             className="px-4 py-2 rounded-full bg-white/10 hover:bg-white/20 transition-all flex items-center gap-2 text-[13px]"
           >
-            Details <ArrowRight size={13} />
+            {t('portfolio.details')} <ArrowRight size={13} />
           </button>
         )}
       </div>

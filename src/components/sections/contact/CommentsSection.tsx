@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { motion, AnimatePresence, Variants } from 'framer-motion'
 import { Upload, Heart, Pin } from 'lucide-react'
 import useComments from '@/hooks/useComments'
@@ -32,6 +33,7 @@ const itemVariants: Variants = {
 }
 
 export default function CommentsSection() {
+  const { t } = useTranslation()
   const { comments, loading, addComment, likeComment } =
     useComments()
 
@@ -79,11 +81,11 @@ export default function CommentsSection() {
       {/* HEADER */}
       <div className="mb-5 md:mb-6">
         <h3 className="text-xl md:text-2xl font-semibold mb-1">
-          Comments
+          {t('contact.comments')}
         </h3>
 
         <p className="text-xs md:text-sm text-white/40">
-          Leave your thoughts here
+          {t('contact.leaveThought')}
         </p>
       </div>
 
@@ -99,7 +101,7 @@ export default function CommentsSection() {
           variants={itemVariants}
           value={name}
           onChange={(e) => setName(e.target.value)}
-          placeholder="Your Name"
+          placeholder={t('contact.yourName')}
           className="w-full rounded-2xl border border-white/15 bg-black/20 px-4 py-3 md:py-4 outline-none focus:border-white"
         />
 
@@ -108,7 +110,7 @@ export default function CommentsSection() {
           rows={4}
           value={comment}
           onChange={(e) => setComment(e.target.value)}
-          placeholder="Your Comment"
+          placeholder={t('contact.yourMessage')}
           className="w-full rounded-2xl border border-white/15 bg-black/20 px-4 py-3 md:py-4 outline-none resize-none focus:border-white"
         />
 
@@ -151,7 +153,7 @@ export default function CommentsSection() {
           disabled={loading}
           className="w-full rounded-2xl py-3 md:py-4 bg-white/10 border border-white/10 transition-all"
         >
-          {loading ? 'Posting...' : 'Post Comment'}
+          {loading ? t('contact.posting') : t('contact.postComment')}
         </motion.button>
       </motion.div>
 

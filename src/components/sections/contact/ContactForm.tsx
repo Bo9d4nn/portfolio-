@@ -2,6 +2,7 @@
 
 import emailjs from '@emailjs/browser'
 import { useRef, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 
 import { motion, Variants } from 'framer-motion'
 import {
@@ -65,6 +66,7 @@ const socialLinks = [
 ]
 
 export default function ContactForm() {
+  const { t } = useTranslation()
   const formRef = useRef<HTMLFormElement>(null)
   const [sending, setSending] = useState(false)
   const [sent, setSent] = useState(false)
@@ -98,9 +100,9 @@ export default function ContactForm() {
       className="rounded-[28px] border border-white/10 bg-white/[0.04] backdrop-blur-xl p-5 md:p-8 flex flex-col h-full"
     >
       <motion.div variants={fieldVariants} initial="hidden" whileInView="show" viewport={{ once: false }}>
-        <h2 className="text-2xl md:text-3xl font-bold mb-3">Get In Touch</h2>
+        <h2 className="text-2xl md:text-3xl font-bold mb-3">{t('contact.getInTouch')}</h2>
         <p className="text-sm text-white/50 mb-7">
-          Feel free to reach out if you want to collaborate, discuss ideas, or simply say hello.
+          {t('contact.description')}
         </p>
       </motion.div>
 
@@ -110,7 +112,7 @@ export default function ContactForm() {
             <User className="absolute left-4 top-1/2 -translate-y-1/2 text-white/40" />
             <input
               name="name"
-              placeholder="Your Name"
+              placeholder={t('contact.yourName')}
               required
               className="w-full rounded-2xl border border-white/15 bg-black/20 pl-12 pr-4 py-4 outline-none transition duration-200 focus:border-white focus:ring-1 focus:ring-white/40"
             />
@@ -123,7 +125,7 @@ export default function ContactForm() {
             <input
               name="email"
               type="email"
-              placeholder="Your Email"
+              placeholder={t('contact.yourEmail')}
               required
               className="w-full rounded-2xl border border-white/15 bg-black/20 pl-12 pr-4 py-4 outline-none transition duration-200 focus:border-white focus:ring-1 focus:ring-white/40"
             />
@@ -136,7 +138,7 @@ export default function ContactForm() {
             <textarea
               name="message"
               rows={5}
-              placeholder="Your Message"
+              placeholder={t('contact.yourMessage')}
               required
               className="w-full rounded-2xl border border-white/15 bg-black/20 pl-12 pr-4 py-4 outline-none resize-none transition duration-200 focus:border-white focus:ring-1 focus:ring-white/40"
             />
@@ -156,7 +158,7 @@ export default function ContactForm() {
           className="w-full rounded-2xl py-4 bg-white/10 border border-white/10 flex items-center justify-center gap-2 transition hover:bg-white/20 disabled:opacity-60"
         >
           <Send size={16} />
-          {sent ? '✓ Message Sent!' : sending ? 'Sending...' : 'Send Message'}
+          {sent ? t('contact.sent') : sending ? t('contact.sending') : t('contact.send')}
         </motion.button>
       </form>
 
@@ -170,7 +172,7 @@ export default function ContactForm() {
           transition={{ delay: 0.34 }}
           className="text-sm text-white/55 mb-4"
         >
-          Connect With Me
+          {t('contact.connectWith')}
         </motion.p>
 
         {/* LINKEDIN */} 

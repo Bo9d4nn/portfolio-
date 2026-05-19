@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import { useTranslation } from 'react-i18next'
 import { motion, AnimatePresence } from 'framer-motion'
 import {
   X, ChevronDown, ChevronUp,
@@ -12,6 +13,7 @@ import PortfolioCard from './PortfolioCard'
 const smoothEase: [number, number, number, number] = [0.22, 1, 0.36, 1]
 
 export default function PortfolioShowcase() {
+  const { t, i18n } = useTranslation()
   const { projects, certificates, techStacks, loading } = usePortfolio()
 
   const [selectedProject, setSelectedProject] = useState<any>(null)
@@ -74,7 +76,7 @@ export default function PortfolioShowcase() {
               <div className="w-12 h-[2px] rounded-full bg-gradient-to-r from-white/40 to-white/5 mb-4" />
 
               <p className="text-[13px] text-white/60 leading-relaxed mb-6">
-                {selectedProject.description}
+                {i18n.language === 'es' && selectedProject.description_es ? selectedProject.description_es : selectedProject.description}
               </p>
 
               <div className="grid grid-cols-2 gap-3 mb-6">
@@ -88,7 +90,7 @@ export default function PortfolioShowcase() {
                         ? selectedProject.technologies.length
                         : (selectedProject.technologies || '').split(',').filter(Boolean).length}
                     </p>
-                    <p className="text-[10px] text-white/40">Technologies</p>
+                    <p className="text-[10px] text-white/40">{t('portfolio.technologies')}</p>
                   </div>
                 </div>
                 <div className="bg-white/[0.04] border border-white/10 rounded-2xl p-3 flex items-center gap-3">
@@ -101,7 +103,7 @@ export default function PortfolioShowcase() {
                         ? selectedProject.key_features.length
                         : (selectedProject.key_features || '').split(',').filter(Boolean).length}
                     </p>
-                    <p className="text-[10px] text-white/40">Key Features</p>
+                    <p className="text-[10px] text-white/40">{t('portfolio.keyFeatures')}</p>
                   </div>
                 </div>
               </div>
@@ -109,7 +111,7 @@ export default function PortfolioShowcase() {
               <div className="mb-5">
                 <div className="flex items-center gap-2 mb-3">
                   <Code2 size={13} className="text-white/60" />
-                  <p className="text-[13px] font-semibold">Technologies</p>
+                  <p className="text-[13px] font-semibold">{t('portfolio.technologies')}</p>
                 </div>
                 <div className="flex flex-wrap gap-2">
                   {(Array.isArray(selectedProject.technologies)
@@ -127,7 +129,7 @@ export default function PortfolioShowcase() {
               <div className="mb-6">
                 <div className="flex items-center gap-2 mb-3">
                   <Sparkles size={13} className="text-white/60" />
-                  <p className="text-[13px] font-semibold">Key Features</p>
+                  <p className="text-[13px] font-semibold">{t('portfolio.keyFeatures')}</p>
                 </div>
                 <ul className="space-y-2">
                   {(Array.isArray(selectedProject.key_features)
@@ -146,11 +148,11 @@ export default function PortfolioShowcase() {
                 {selectedProject.live_url ? (
                   <a href={selectedProject.live_url} target="_blank"
                     className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white/[0.05] border border-white/10 hover:bg-white/10 transition text-[13px]">
-                    <ExternalLink size={13} /> Live Demo
+                    <ExternalLink size={13} /> {t('portfolio.liveDemo')}
                   </a>
                 ) : (
                   <div className="flex items-center gap-2 px-4 py-2.5 rounded-xl border border-white/10 text-white/30 text-[13px]">
-                    <ExternalLink size={13} /> No Link
+                    <ExternalLink size={13} /> {t('portfolio.noLink')}
                   </div>
                 )}
                 {selectedProject.github_url ? (
@@ -160,7 +162,7 @@ export default function PortfolioShowcase() {
                   </a>
                 ) : (
                   <div className="flex items-center gap-2 px-4 py-2.5 rounded-xl border border-white/10 text-white/30 text-[13px]">
-                    <GitBranch size={13} /> No Link
+                    <GitBranch size={13} /> {t('portfolio.noLink')}
                   </div>
                 )}
               </div>
@@ -224,7 +226,7 @@ export default function PortfolioShowcase() {
                   target="_blank"
                   className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white/[0.05] border border-white/10 hover:bg-white/10 transition text-[13px] w-fit"
                     >
-                  <ExternalLink size={13} /> View Credential
+                  <ExternalLink size={13} /> {t('portfolio.viewCredential')}
                 </a>
               )}
             </motion.div>
@@ -243,9 +245,9 @@ export default function PortfolioShowcase() {
           transition={{ duration: 0.9 }}
           className="text-center mb-8"
         >
-          <h1 className="text-3xl md:text-5xl font-bold mb-3">Portfolio Showcase</h1>
+          <h1 className="text-3xl md:text-5xl font-bold mb-3">{t('portfolio.title')}</h1>
           <p className="text-white/55 max-w-xl mx-auto text-sm md:text-base">
-            Explore my journey through projects, certifications, and technical expertise.
+            {t('portfolio.subtitle')}
           </p>
         </motion.div>
 
@@ -263,7 +265,7 @@ export default function PortfolioShowcase() {
                   activeTab === tab ? 'bg-white/10 text-white' : 'text-white/50 hover:text-white'
                 }`}
               >
-                {tab === 'projects' ? 'Projects' : tab === 'certificates' ? 'Certificates' : 'Tech Stack'}
+                {tab === 'projects' ? t('portfolio.projects') : tab === 'certificates' ? t('portfolio.certificates') : t('portfolio.techStack')}
               </button>
             ))}
           </div>
@@ -298,7 +300,7 @@ export default function PortfolioShowcase() {
                         <PortfolioCard
                           index={i}
                           title={item.title}
-                          description={item.description}
+                          description={i18n.language === 'es' && item.description_es ? item.description_es : item.description}
                           image={item.image_url}
                           live_url={item.live_url}
                           id={item.id}
@@ -327,7 +329,7 @@ export default function PortfolioShowcase() {
                           transition={{ duration: 0.25 }}
                           className="flex items-center gap-2"
                         >
-                          {showAllProjects ? <><ChevronUp size={16} /> See Less</> : <><ChevronDown size={16} /> See More</>}
+                          {showAllProjects ? <><ChevronUp size={16} /> {t('portfolio.seeLess')}</> : <><ChevronDown size={16} /> {t('portfolio.seeMore')}</>}
                         </motion.div>
                       </AnimatePresence>
                     </motion.button>

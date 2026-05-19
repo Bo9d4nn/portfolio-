@@ -177,12 +177,12 @@ export default function Navbar() {
         </span>
 
         {!isMobile && (
-          <div style={{ display: 'flex', gap: 40 }}>
+          <div style={{ display: 'flex', gap: 40, alignItems: 'center' }}>
             {navItems.map((item) => {
               const isActive = activeSection === item.id
-
               return (
-                <a
+                
+                <a 
                   key={item.id}
                   href={`#${item.id}`}
                   onClick={(e) => smoothScrollTo(e, `#${item.id}`)}
@@ -190,9 +190,7 @@ export default function Navbar() {
                     position: 'relative',
                     fontFamily: "'DM Mono', monospace",
                     fontSize: 13,
-                    color: isActive
-                      ? 'var(--text-primary)'
-                      : 'var(--text-secondary)',
+                    color: isActive ? 'var(--text-primary)' : 'var(--text-secondary)',
                     textDecoration: 'none',
                     letterSpacing: '0.08em',
                     cursor: 'pointer',
@@ -201,7 +199,6 @@ export default function Navbar() {
                   }}
                 >
                   {item.label}
-
                   <span
                     style={{
                       position: 'absolute',
@@ -209,11 +206,8 @@ export default function Navbar() {
                       left: 0,
                       width: '100%',
                       height: 1,
-                      // background: 'white',
                       background: 'rgba(26,32,44,0.95)',
-                      transform: isActive
-                        ? 'scaleX(1)'
-                        : 'scaleX(0)',
+                      transform: isActive ? 'scaleX(1)' : 'scaleX(0)',
                       transformOrigin: 'left',
                       transition: 'transform 0.25s ease',
                     }}
@@ -221,23 +215,61 @@ export default function Navbar() {
                 </a>
               )
             })}
-            
+
+            {/* LANGUAGE TOGGLE */}
+            <button
+              onClick={toggleLanguage}
+              style={{
+                fontFamily: "'DM Mono', monospace",
+                fontSize: 12,
+                letterSpacing: '0.08em',
+                padding: '4px 10px',
+                borderRadius: 6,
+                border: '1px solid var(--border)',
+                background: 'transparent',
+                color: 'var(--text-secondary)',
+                cursor: 'pointer',
+                lineHeight: 1,
+                display: 'flex',
+                alignItems: 'center',
+              }}
+            >
+              {i18n.language === 'en' ? 'ES' : 'EN'}
+            </button>
           </div>
         )}
 
         {isMobile && (
-          <div
-            onClick={() => setOpen(!open)}
-            style={{
-              display: 'flex',
-              flexDirection: 'column',
-              gap: 4,
-              cursor: 'pointer',
-            }}
-          >
-            <span style={{ width: 20, height: 2, background: 'white' }} />
-            <span style={{ width: 20, height: 2, background: 'white' }} />
-            <span style={{ width: 20, height: 2, background: 'white' }} />
+          <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+            <button
+              onClick={toggleLanguage}
+              style={{
+                fontFamily: "'DM Mono', monospace",
+                fontSize: 11,
+                padding: '4px 8px',
+                borderRadius: 6,
+                border: '1px solid var(--border)',
+                background: 'transparent',
+                color: 'var(--text-secondary)',
+                cursor: 'pointer',
+                lineHeight: 1,
+              }}
+            >
+              {i18n.language === 'en' ? 'ES' : 'EN'}
+            </button>
+            <div
+              onClick={() => setOpen(!open)}
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                gap: 4,
+                cursor: 'pointer',
+              }}
+            >
+              <span style={{ width: 20, height: 2, background: 'white' }} />
+              <span style={{ width: 20, height: 2, background: 'white' }} />
+              <span style={{ width: 20, height: 2, background: 'white' }} />
+            </div>
           </div>
         )}
       </div>

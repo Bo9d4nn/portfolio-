@@ -1,6 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import { useTranslation } from 'react-i18next'
 import ContactForm from './ContactForm'
 import CommentsSection from './CommentsSection'
 
@@ -14,6 +15,7 @@ const smoothEase: [number, number, number, number] = [
 ]
 
 export default function ContactSection() {
+  const { t } = useTranslation()
   return (
     <section
       id="contact"
@@ -48,7 +50,7 @@ export default function ContactSection() {
     viewport={{ once: false }}
     className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-3 sm:mb-4"
   >
-    Contact Me
+    {t('contact.title')}
   </motion.h1>
 
   <motion.p
@@ -65,7 +67,7 @@ export default function ContactSection() {
     viewport={{ once: false }}
     className="text-white/60 text-sm sm:text-base max-w-xl sm:max-w-2xl mx-auto leading-relaxed"
   >
-    Have something in mind? Send a message and let's connect.
+    {t('contact.subtitle')}
   </motion.p>
 </motion.div>
 

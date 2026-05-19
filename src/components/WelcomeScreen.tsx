@@ -1,9 +1,11 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import { useTranslation } from 'react-i18next'
 import { Code2, User, Globe } from 'lucide-react'
 
 export default function WelcomeScreen() {
+  const { t } = useTranslation()
   const icons = [Code2, User, Globe]
 
   return (
@@ -135,7 +137,7 @@ export default function WelcomeScreen() {
                 letterSpacing: '-0.05em',
               }}
             >
-              Welcome
+              {t('welcome.line1')}
             </motion.span>
 
             {/* to my */}
@@ -153,7 +155,7 @@ export default function WelcomeScreen() {
                 letterSpacing: '-0.05em',
               }}
             >
-              to my
+              {t('welcome.line2')}
             </motion.span>
           </div>
 
@@ -176,7 +178,7 @@ export default function WelcomeScreen() {
               whiteSpace: 'nowrap',
             }}
           >
-            Portfolio Website
+            {t('welcome.line3')}
           </motion.h1>
         </div>
 

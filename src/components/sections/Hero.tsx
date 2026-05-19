@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import App from "@/components/band/App";
 import TextType from "@/components/band/TextType";
+import { useTranslation } from "react-i18next";
 
 const skills = ["React", "FastAPI", "TypeScript"];
 
@@ -13,6 +14,7 @@ type HeroProps = {
 
 export default function Hero({ showApp }: HeroProps) {
   const [startAnim, setStartAnim] = useState(false);
+  const { t } = useTranslation();
 
   useEffect(() => {
     const heroPlayed = sessionStorage.getItem("heroPlayed");
@@ -51,7 +53,6 @@ export default function Hero({ showApp }: HeroProps) {
         overflow: "hidden",
       }}
     >
-      {/* APP LAYER */}
       <div
         style={{
           position: "absolute",
@@ -63,36 +64,19 @@ export default function Hero({ showApp }: HeroProps) {
         {showApp && <App />}
       </div>
 
-      {/* TEXT */}
       <div
         className="md:max-w-[600px]"
-        style={{
-          width: "100%",
-          position: "relative",
-          zIndex: 5,
-        }}
+        style={{ width: "100%", position: "relative", zIndex: 5 }}
       >
         {/* LABEL */}
         <motion.div
           initial={false}
-          animate={
-            startAnim
-              ? { opacity: 1, y: 0, filter: "blur(0px)" }
-              : { opacity: 0, y: 30, filter: "blur(12px)" }
-          }
+          animate={startAnim ? { opacity: 1, y: 0, filter: "blur(0px)" } : { opacity: 0, y: 30, filter: "blur(12px)" }}
           transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
           style={{ marginBottom: 20 }}
         >
-          <span
-            style={{
-              fontFamily: "'DM Mono', monospace",
-              fontSize: 12,
-              color: "var(--text-muted)",
-              letterSpacing: "0.2em",
-              textTransform: "uppercase",
-            }}
-          >
-            ✦ Available for work
+          <span style={{ fontFamily: "'DM Mono', monospace", fontSize: 12, color: "var(--text-muted)", letterSpacing: "0.2em", textTransform: "uppercase" }}>
+            ✦ {t('hero.available')}
           </span>
         </motion.div>
 
@@ -100,49 +84,20 @@ export default function Hero({ showApp }: HeroProps) {
         <div>
           <motion.h1
             initial={false}
-            animate={
-              startAnim
-                ? { opacity: 1, scale: 1, y: 0 }
-                : { opacity: 0, scale: 0.85, y: 50 }
-            }
-            transition={{
-              duration: 1,
-              ease: [0.22, 1, 0.36, 1],
-            }}
-            style={{
-              fontSize: "clamp(32px, 6vw, 62px)",
-              fontWeight: 800,
-              lineHeight: 1.05,
-              color: "var(--text-primary)",
-              letterSpacing: "-0.03em",
-              marginBottom: 0,
-            }}
+            animate={startAnim ? { opacity: 1, scale: 1, y: 0 } : { opacity: 0, scale: 0.85, y: 50 }}
+            transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+            style={{ fontSize: "clamp(32px, 6vw, 62px)", fontWeight: 800, lineHeight: 1.05, color: "var(--text-primary)", letterSpacing: "-0.03em", marginBottom: 0 }}
           >
-            Full Stack
+            {t('hero.role1')}
           </motion.h1>
 
           <motion.h1
             initial={false}
-            animate={
-              startAnim
-                ? { opacity: 1, x: 0, rotate: 0 }
-                : { opacity: 0, x: -80, rotate: -4 }
-            }
-            transition={{
-              duration: 1,
-              delay: 0.2,
-              ease: [0.22, 1, 0.36, 1],
-            }}
-            style={{
-              fontSize: "clamp(32px, 6vw, 62px)",
-              fontWeight: 800,
-              lineHeight: 1.05,
-              color: "var(--text-secondary)",
-              letterSpacing: "-0.03em",
-              marginBottom: 24,
-            }}
+            animate={startAnim ? { opacity: 1, x: 0, rotate: 0 } : { opacity: 0, x: -80, rotate: -4 }}
+            transition={{ duration: 1, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+            style={{ fontSize: "clamp(32px, 6vw, 62px)", fontWeight: 800, lineHeight: 1.05, color: "var(--text-secondary)", letterSpacing: "-0.03em", marginBottom: 24 }}
           >
-            Developer
+            {t('hero.role2')}
           </motion.h1>
         </div>
 
@@ -153,14 +108,7 @@ export default function Hero({ showApp }: HeroProps) {
           transition={{ duration: 0.8, delay: 0.35 }}
           style={{ marginBottom: 12 }}
         >
-          <span
-            style={{
-              fontFamily: "'DM Mono', monospace",
-              fontSize: 15,
-              color: "var(--text-secondary)",
-              letterSpacing: "0.1em",
-            }}
-          >
+          <span style={{ fontFamily: "'DM Mono', monospace", fontSize: 15, color: "var(--text-secondary)", letterSpacing: "0.1em" }}>
             <TextType
               text={["Full Stack Developer", "Building things that matter.", "React · FastAPI · Next.js"]}
               typingSpeed={75}
@@ -176,31 +124,12 @@ export default function Hero({ showApp }: HeroProps) {
         {/* DESC */}
         <motion.div
           initial={false}
-          animate={
-            startAnim
-              ? { opacity: 1, y: 0, scale: 1 }
-              : { opacity: 0, y: 50, scale: 0.96 }
-          }
+          animate={startAnim ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 50, scale: 0.96 }}
           transition={{ duration: 1, delay: 0.5 }}
-          style={{
-            marginBottom: 28,
-            width: "100%",
-            maxWidth: 460, // batas lebar biar jadi 3 baris
-          }}
+          style={{ marginBottom: 28, width: "100%", maxWidth: 460 }}
         >
-          <p
-            style={{
-              fontSize: 14,
-              color: "var(--text-secondary)",
-              lineHeight: 1.9,
-              letterSpacing: "0.01em",
-              textWrap: "pretty",
-            }}
-          >
-            Full stack developer with experience in React, FastAPI, Next.js and C# / ASP.NET. 
-I enjoy building modern web applications from the ground up — clean code, 
-scalable architecture, and interfaces that actually feel good to use. 
-Currently finishing my degree with Aurea, an e-commerce platform with blockchain-based authenticity certificates.
+          <p style={{ fontSize: 14, color: "var(--text-secondary)", lineHeight: 1.9, letterSpacing: "0.01em", textWrap: "pretty" }}>
+            {t('hero.description')}
           </p>
         </motion.div>
 
@@ -208,39 +137,15 @@ Currently finishing my degree with Aurea, an e-commerce platform with blockchain
         <motion.div
           initial="hidden"
           animate={startAnim ? "visible" : "hidden"}
-          variants={{
-            hidden: {},
-            visible: {
-              transition: {
-                staggerChildren: 0.12,
-                delayChildren: 0.7,
-              },
-            },
-          }}
-          style={{
-            display: "flex",
-            gap: 8,
-            flexWrap: "wrap",
-            marginBottom: 28,
-          }}
+          variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.12, delayChildren: 0.7 } } }}
+          style={{ display: "flex", gap: 8, flexWrap: "wrap", marginBottom: 28 }}
         >
           {skills.map((skill) => (
             <motion.span
               key={skill}
-              variants={{
-                hidden: { opacity: 0, y: 25, scale: 0.85 },
-                visible: { opacity: 1, y: 0, scale: 1 },
-              }}
+              variants={{ hidden: { opacity: 0, y: 25, scale: 0.85 }, visible: { opacity: 1, y: 0, scale: 1 } }}
               transition={{ duration: 0.5 }}
-              style={{
-                fontFamily: "'DM Mono', monospace",
-                fontSize: 11,
-                color: "var(--text-secondary)",
-                border: "1px solid var(--border)",
-                borderRadius: 999,
-                padding: "5px 12px",
-                backgroundColor: "var(--bg-card)",
-              }}
+              style={{ fontFamily: "'DM Mono', monospace", fontSize: 11, color: "var(--text-secondary)", border: "1px solid var(--border)", borderRadius: 999, padding: "5px 12px", backgroundColor: "var(--bg-card)" }}
             >
               {skill}
             </motion.span>
@@ -252,101 +157,41 @@ Currently finishing my degree with Aurea, an e-commerce platform with blockchain
           initial={false}
           animate={startAnim ? { opacity: 1, y: 0 } : { opacity: 0, y: 25 }}
           transition={{ duration: 0.8, delay: 1 }}
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            gap: 6,
-          }}
+          style={{ display: "flex", flexDirection: "column", gap: 6 }}
         >
-          <span
-            style={{
-              fontFamily: "'DM Mono', monospace",
-              fontSize: 13,
-              color: "var(--text-muted)",
-            }}
-          >
-            ↓ explore my work below
+          <span style={{ fontFamily: "'DM Mono', monospace", fontSize: 13, color: "var(--text-muted)" }}>
+            {t('hero.explore')}
           </span>
-
-          <span
-            style={{
-              fontFamily: "'DM Mono', monospace",
-              fontSize: 13,
-              color: "var(--text-muted)",
-            }}
-          >
-            ↗ open to full-time & freelance opportunities
+          <span style={{ fontFamily: "'DM Mono', monospace", fontSize: 13, color: "var(--text-muted)" }}>
+            {t('hero.open')}
           </span>
         </motion.div>
       </div>
+
       {/* SCROLL INDICATOR */}
       <motion.div
         initial={false}
         animate={startAnim ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
-        transition={{
-          duration: 0.9,
-          delay: 1.2,
-          ease: [0.22, 1, 0.36, 1],
-        }}
-        style={{
-          position: "absolute",
-          bottom: 38,
-          left: "50%",
-          transform: "translateX(-50%)",
-          zIndex: 20,
-          pointerEvents: "none",
-        }}
+        transition={{ duration: 0.9, delay: 1.2, ease: [0.22, 1, 0.36, 1] }}
+        style={{ position: "absolute", bottom: 38, left: "50%", transform: "translateX(-50%)", zIndex: 20, pointerEvents: "none" }}
       >
-        {/* SCROLL INDICATOR */}
-<motion.div
-  initial={false}
-  animate={
-    startAnim
-      ? { opacity: 1, y: 0 }
-      : { opacity: 0, y: 40 }
-  }
-  transition={{
-    duration: 0.9,
-    delay: 1.2,
-    ease: [0.22, 1, 0.36, 1],
-  }}
-  className="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 pointer-events-none w-full flex justify-center"
->
-  <motion.div
-    animate={{
-      y: [0, 6, 0],
-      opacity: [1, 0.65, 1],
-    }}
-    transition={{
-      duration: 1.4,
-      repeat: Infinity,
-      ease: 'easeInOut',
-    }}
-    className="flex items-center justify-center gap-2"
-  >
-    <span
-      style={{
-        fontFamily: "'DM Mono', monospace",
-        fontSize: 11,
-        letterSpacing: '0.2em',
-        textTransform: 'uppercase',
-        color: 'var(--text-muted)',
-      }}
-    >
-      Scroll
-    </span>
-
-    <span
-      style={{
-        fontSize: 16,
-        color: 'var(--text-secondary)',
-        lineHeight: 1,
-      }}
-    >
-      ↓
-    </span>
-  </motion.div>
-</motion.div>
+        <motion.div
+          initial={false}
+          animate={startAnim ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
+          transition={{ duration: 0.9, delay: 1.2, ease: [0.22, 1, 0.36, 1] }}
+          className="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 pointer-events-none w-full flex justify-center"
+        >
+          <motion.div
+            animate={{ y: [0, 6, 0], opacity: [1, 0.65, 1] }}
+            transition={{ duration: 1.4, repeat: Infinity, ease: 'easeInOut' }}
+            className="flex items-center justify-center gap-2"
+          >
+            <span style={{ fontFamily: "'DM Mono', monospace", fontSize: 11, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--text-muted)' }}>
+              Scroll
+            </span>
+            <span style={{ fontSize: 16, color: 'var(--text-secondary)', lineHeight: 1 }}>↓</span>
+          </motion.div>
+        </motion.div>
       </motion.div>
     </section>
   );
