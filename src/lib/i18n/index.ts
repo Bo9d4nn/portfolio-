@@ -15,6 +15,7 @@ i18n
     },
     defaultNS: 'common',
     fallbackLng: 'en',
+    lng: 'en',
     interpolation: { escapeValue: false },
   })
 
