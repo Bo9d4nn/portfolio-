@@ -9,6 +9,7 @@ import {
 } from 'lucide-react'
 import usePortfolio from '@/hooks/usePortfolio'
 import PortfolioCard from './PortfolioCard'
+import ImageSlider from './ImageSlider'
 
 const smoothEase: [number, number, number, number] = [0.22, 1, 0.36, 1]
 
@@ -66,11 +67,13 @@ export default function PortfolioShowcase() {
                 <X size={16} />
               </button>
 
-              {selectedProject.image_url && (
-                <div className="w-full h-48 rounded-2xl overflow-hidden border border-white/10 mb-5">
-                  <img src={selectedProject.image_url} className="w-full h-full object-cover" />
-                </div>
-              )}
+              <ImageSlider
+                images={
+                  Array.isArray(selectedProject.image_urls) && selectedProject.image_urls.length > 0
+                    ? selectedProject.image_urls
+                    : selectedProject.image_url ? [selectedProject.image_url] : []
+                }
+              />
 
               <h2 className="text-2xl font-bold mb-1">{selectedProject.title}</h2>
               <div className="w-12 h-[2px] rounded-full bg-gradient-to-r from-white/40 to-white/5 mb-4" />
