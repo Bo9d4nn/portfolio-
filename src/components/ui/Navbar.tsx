@@ -11,11 +11,11 @@ export default function Navbar() {
   const [activeSection, setActiveSection] = useState('home')
   const [mounted, setMounted] = useState(false)
 
-  // 🔥 navbar muncul sekali aja
+  //  navbar muncul sekali aja
   const [showNavbar, setShowNavbar] = useState(false)
 
 
-  const { i18n } = useTranslation()
+  const { i18n , t } = useTranslation()
 
   const toggleLanguage = () => {
     i18n.changeLanguage(i18n.language === 'en' ? 'es' : 'en')
@@ -123,12 +123,14 @@ export default function Navbar() {
     setOpen(false)
   }
 
+  
+
   const navItems = [
-    { label: 'Home', id: 'home' },
-    { label: 'About', id: 'about' },
-    { label: 'Experience', id: 'experience' },
-    { label: 'Portfolio', id: 'portfolio' },
-    { label: 'Contact', id: 'contact' },
+    { label: t('nav.home'), id: 'home' },
+    { label: t('nav.about'), id: 'about' },
+    { label: t('nav.experience'), id: 'experience' },
+    { label: t('nav.portfolio'), id: 'portfolio' },
+    { label: t('nav.contact'), id: 'contact' },
   ]
   return (
     <motion.nav

@@ -24,10 +24,6 @@
     "certificates": "CERTIFICATES",
     "techStack": "TECH STACK"
   },
-  "experience": {
-    "label": "EXPERIENCE",
-    "title": "Work History"
-  },
   "portfolio": {
     "title": "Portfolio Showcase",
     "subtitle": "Explore my journey through projects, certifications, and technical expertise.",
@@ -64,5 +60,11 @@
     "line1": "Welcome",
     "line2": "to my",
     "line3": "Portfolio Website"
+  },
+    "experience": {
+    "label": "EXPERIENCE",
+    "title": "Work History",
+    "current": "CURRENT",
+    "present": "Present"
   }
 }

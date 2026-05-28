@@ -69,13 +69,15 @@ export default function Experience() {
                         <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--text-primary)' }}>{exp.company}</h3>
                         {exp.current && (
                           <span style={{ fontSize: 9, padding: '2px 8px', borderRadius: 999, background: 'rgba(201,169,110,0.15)', color: 'var(--text-secondary)', border: '1px solid rgba(201,169,110,0.3)', letterSpacing: '0.1em' }}>
-                            CURRENT
+                            {t('experience.current')}
                           </span>
                         )}
                       </div>
                       <p style={{ fontSize: 13, color: 'var(--text-secondary)' }}>{i18n.language === 'es' && exp.role_es ? exp.role_es : exp.role}</p>
                     </div>
-                    <span style={{ fontSize: 11, color: 'var(--text-muted)', fontFamily: "'DM Mono', monospace", letterSpacing: '0.05em' }}>{exp.period}</span>
+                    <span style={{ fontSize: 11, color: 'var(--text-muted)', fontFamily: "'DM Mono', monospace", letterSpacing: '0.05em' }}>
+                      {exp.period.replace('Present', t('experience.present'))}
+                    </span>
                   </div>
                   <p style={{ fontSize: 13, color: 'var(--text-muted)', lineHeight: 1.7, marginBottom: 14 }}>{i18n.language === 'es' && exp.description_es ? exp.description_es : exp.description}</p>
                   <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>

@@ -115,7 +115,13 @@ export default function About() {
             </motion.div>
 
             {/* BUTTONS */}
-            <motion.div variants={fadeUp} style={{ display: "flex", gap: 10, marginTop: 18, flexWrap: "wrap" }}>
+            <motion.div variants={fadeUp} style={{
+                  display: "flex",
+                  gap: 10,
+                  marginTop: 18,
+                  flexWrap: "wrap",
+                  justifyContent: isMobile ? "center" : "flex-start",
+                }}>
               <a href="/assets/CV - Bohdan Kharuk.pdf" download="CV - Bohdan Kharuk.pdf" target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none" }}>
                 <button
                   style={{ display: "flex", alignItems: "center", gap: 6, padding: "10px 18px", borderRadius: 8, border: "1px solid white", background: "white", color: "black", fontSize: 13, fontWeight: 600, cursor: "pointer", transition: "transform 0.25s ease, opacity 0.25s ease" }}
@@ -140,10 +146,37 @@ export default function About() {
           </motion.div>
 
           {/* IMAGE */}
-          {!isMobile && (
-            <motion.div variants={slideLeft} initial="hidden" whileInView="show" viewport={{ once: false }} style={{ width: "48%", display: "flex", justifyContent: "flex-end" }}>
-              <div style={{ padding: 12, borderRadius: "50%", border: "1px solid var(--border)", transform: "translateX(-80px)" }}>
-                <img src="/assets/mephoto.png" alt="Profile" style={{ width: 240, height: 240, borderRadius: "50%", objectFit: "cover", objectPosition: "60% 15%", display: "block" }} />
+          {isMobile ? (
+            <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 24 }}>
+              <div style={{ padding: 8, borderRadius: '50%', border: '1px solid var(--border)' }}>
+                <img
+                  src="/assets/mephoto.png"
+                  alt="Profile"
+                  style={{
+                    width: 120,
+                    height: 120,
+                    borderRadius: '50%',
+                    objectFit: 'cover',
+                    objectPosition: '60% 15%',
+                    display: 'block',
+                  }}
+                />
+              </div>
+            </div>
+          ) : (
+            <motion.div
+              variants={slideLeft}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: false }}
+              style={{ width: '48%', display: 'flex', justifyContent: 'flex-end' }}
+            >
+              <div style={{ padding: 12, borderRadius: '50%', border: '1px solid var(--border)', transform: 'translateX(-80px)' }}>
+                <img
+                  src="/assets/mephoto.png"
+                  alt="Profile"
+                  style={{ width: 240, height: 240, borderRadius: '50%', objectFit: 'cover', objectPosition: '60% 15%', display: 'block' }}
+                />
               </div>
             </motion.div>
           )}

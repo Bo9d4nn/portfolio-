@@ -6,7 +6,7 @@ import App from "@/components/band/App";
 import TextType from "@/components/band/TextType";
 import { useTranslation } from "react-i18next";
 
-const skills = ["React", "FastAPI", "TypeScript"];
+const skills = ["React", "FastAPI", "TypeScript" ,"Python" , "C#"];
 
 type HeroProps = {
   showApp: boolean;

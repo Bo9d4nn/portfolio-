@@ -21,25 +21,25 @@ export default function AdminCommentsPage() {
   useEffect(() => {
     fetchComments();
 
-    const channel = supabase
-      .channel("comments-realtime")
-      .on(
-        "postgres_changes",
-        {
-          event: "*",
-          schema: "public",
-          table: "comments",
-        },
-        () => {
-          fetchComments();
-        },
-      )
-      .subscribe();
+    // const channel = supabase
+    //   .channel("comments-realtime")
+    //   .on(
+    //     "postgres_changes",
+    //     {
+    //       event: "*",
+    //       schema: "public",
+    //       table: "comments",
+    //     },
+    //     () => {
+    //       fetchComments();
+    //     },
+    //   )
+    //   .subscribe();
 
-    return () => {
-      supabase.removeChannel(channel);
-    };
-  }, []);
+    // return () => {
+    //   supabase.removeChannel(channel);
+    // };
+  }, [])
 
   const fetchComments = async () => {
     setLoading(true);
@@ -55,25 +55,28 @@ export default function AdminCommentsPage() {
   };
 
   const deleteComment = async (id: number) => {
-    const result = await Swal.fire({
-      title: "Delete Comment?",
-      text: "This action cannot be undone.",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonText: "Delete",
-      cancelButtonText: "Cancel",
-      background: "#0f0f0f",
-      color: "#fff",
-      confirmButtonColor: "#ef4444",
-      cancelButtonColor: "#27272a",
-    });
+  const result = await Swal.fire({
+    title: "Delete Comment?",
+    text: "This action cannot be undone.",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonText: "Delete",
+    cancelButtonText: "Cancel",
+    background: "#0f0f0f",
+    color: "#fff",
+    confirmButtonColor: "#ef4444",
+    cancelButtonColor: "#27272a",
+  });
 
-    if (!result.isConfirmed) return;
+  if (!result.isConfirmed) return;
 
-    await supabase.from("comments").delete().eq("id", id);
+  setComments((prev) => prev.filter((item) => item.id !== id));
 
-    setComments((prev) => prev.filter((item) => item.id !== id));
+  const { error } = await supabase.from("comments").delete().eq("id", Number(id));
 
+  if (error) {
+    fetchComments();
+  } else {
     Swal.fire({
       title: "Deleted",
       text: "Comment removed successfully",
@@ -83,7 +86,8 @@ export default function AdminCommentsPage() {
       background: "#0f0f0f",
       color: "#fff",
     });
-  };
+  }
+};
 
   const togglePin = async (id: number, current: boolean) => {
     const newValue = !current;

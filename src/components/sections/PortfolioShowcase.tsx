@@ -10,8 +10,12 @@ import {
 import usePortfolio from '@/hooks/usePortfolio'
 import PortfolioCard from './PortfolioCard'
 import ImageSlider from './ImageSlider'
+import { createPortal } from 'react-dom'
 
 const smoothEase: [number, number, number, number] = [0.22, 1, 0.36, 1]
+
+
+
 
 export default function PortfolioShowcase() {
   const { t, i18n } = useTranslation()
@@ -21,6 +25,12 @@ export default function PortfolioShowcase() {
   const [selectedCertificate, setSelectedCertificate] = useState<any>(null)
   const [activeTab, setActiveTab] = useState('projects')
   const [showAllProjects, setShowAllProjects] = useState(false)
+
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+  setMounted(true)
+  }, [])
 
   useEffect(() => {
     const handler = (e: any) => {
@@ -43,14 +53,15 @@ export default function PortfolioShowcase() {
   return (
     <>
       {/* PROJECT MODAL */}
-      <AnimatePresence>
-        {selectedProject && (
+      {mounted && selectedProject && createPortal(
+        <AnimatePresence>
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setSelectedProject(null)}
-            className="fixed inset-0 z-[999] bg-black/80 backdrop-blur-md flex items-center justify-center px-4"
+            className="fixed inset-0 bg-black/80 backdrop-blur-md flex items-center justify-center px-4"
+            style={{ zIndex: 9998 }}
           >
             <motion.div
               initial={{ opacity: 0, scale: 0.92, y: 30 }}
@@ -120,10 +131,10 @@ export default function PortfolioShowcase() {
                   {(Array.isArray(selectedProject.technologies)
                     ? selectedProject.technologies
                     : (selectedProject.technologies || '').split(',').filter(Boolean)
-                  ).map((t: string, i: number) => (
+                  ).map((tech: string, i: number) => (
                     <span key={i} className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white/[0.05] border border-white/10 text-[11px] text-white/70">
                       <Box size={10} className="text-white/40" />
-                      {t.trim()}
+                      {tech.trim()}
                     </span>
                   ))}
                 </div>
@@ -171,9 +182,11 @@ export default function PortfolioShowcase() {
               </div>
             </motion.div>
           </motion.div>
-        )}
-      </AnimatePresence>
+        </AnimatePresence>,
+        document.body
+      )}
 
+      
       {/* CERTIFICATE MODAL */}
       <AnimatePresence>
 

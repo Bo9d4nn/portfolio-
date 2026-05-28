@@ -24,10 +24,6 @@
     "certificates": "CERTIFICADOS",
     "techStack": "TECNOLOGÍAS"
   },
-  "experience": {
-    "label": "EXPERIENCIA",
-    "title": "Historial Laboral"
-  },
   "portfolio": {
     "title": "Portfolio",
     "subtitle": "Explora mi trayectoria a través de proyectos, certificaciones y experiencia técnica.",
@@ -64,5 +60,11 @@
     "line1": "Bienvenido",
     "line2": "a mi",
     "line3": "Portfolio"
+  },
+    "experience": {
+    "label": "EXPERIENCIA",
+    "title": "Historial Laboral",
+    "current": "ACTUAL",
+    "present": "Presente"
   }
 }
